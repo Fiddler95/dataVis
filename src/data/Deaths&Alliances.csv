@@ -1,0 +1,54 @@
+Nationality,GeoCode,Deaths,Alliance
+Cuba,CUB,100,1
+Mexico,MEX,100,1
+Switzerland,CHE,100,5001
+Iceland,ISL,200,5001
+Iran,IRN,200,5001
+Ireland,IRL,200,5001
+Turkey,TUR,200,5001
+Mongolia,MNG,300,10000
+Iraq,IRQ,500,10000
+Nauru,NRU,500,1
+Sweden,SWE,600,5001
+Brazil,BRA,2000,1
+Luxembourg,LUX,2000,1
+Denmark,DNK,3200,1
+Thailand,THA,7600,10000
+Norway,NOR,9500,1
+New Zealand,NZL,11900,1
+South Africa,ZAF,11900,1
+Papua New Guinea,PNG,15000,5001
+Bulgaria,BGR,25000,10000
+Albania,ALB,30000,1
+Australia,AUS,40500,1
+Canada,CAN,45400,1
+Estonia,EST,50000,5001
+Portugal,PRT,55000,5001
+Slovakia,SVK,65500,10000
+Finland,FIN,97000,10000
+Ethiopia,ETH,100000,1
+Austria,AUT,120000,1
+Singapore,SGP,150000,1
+Latvia,LVA,230000,5001
+Belgium,BEL,238000,1
+Myanmar,MMR,272000,5001
+United States,USA,288001,1
+Netherlands,NLD,301000,1
+Czechoslovakia,CZE,325000,1
+Greece,GRC,327550,1
+Lithuania,LTU,350000,5001
+Korea,KOR,430500,1
+Italy,ITA,444290,10000
+United Kingdom,GBR,450901,1
+France,FRA,552600,1
+Romania,ROU,800000,10000
+Hungary,HUN,804500,10000
+Philippines,PHL,807000,1
+Yugoslavia,MKD,1027000,1
+India,IND,2087000,1
+Japan,JPN,2870149,10000
+Indonesia,IDN,3500000,1
+Poland,POL,5720000,1
+Germany,DEU,7605632,10000
+China,CHN,15000000,1
+Soviet Union,RUS,20045724,1
