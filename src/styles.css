@@ -8,6 +8,17 @@
     height: 100%;
     width: 100%;
 }
+
+.ally{
+    fill: blue
+}
+
+.baddies{
+    fill: red
+}
+
+
+
 .pulsanti {
     float: left;
     display: block;
@@ -71,6 +82,8 @@
 }
 .countries {
     fill: #eeeeee;
+    stroke-width: 1px;
+    stroke:black;
 }
 
 

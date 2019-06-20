@@ -9,6 +9,8 @@ d3.csv("data/Deaths&Alliances.csv", function (error, csv) {
     csv.forEach(function (d) {
         globalData.push(d);
     });
+    
 });
 
-mapObject.createMap(globalData)
+
+mapObject.createMap(globalData);

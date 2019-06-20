@@ -7,12 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="d3/topojson.js"></script>
+    <script type="text/javascript" src="Map.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="#alliance" class="pulsanti active">Alliances</a>
+        <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapDeaths()">Alliances</a>
         <a href="#deathCount" class="pulsanti inactive">Casualties</a>
         <a href="#contact" class="pulsanti inactive">Contact</a>
         <a href="#about" class="pulsanti inactive">About</a>
@@ -25,11 +30,7 @@
 
     <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    <script type="text/javascript" src="d3/topojson.js"></script>
-    <script type="text/javascript" src="Map.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    
     <script>
     var header = document.getElementById("myTopnav");
     var btns = header.getElementsByClassName("pulsanti");
