@@ -7,7 +7,14 @@ var mapObject = {
     createMap: null,
     drawMap: null,
     colorMapAlly:null,
-    colorMapDeaths:null
+    colorMapDeaths:null,
+    testCoord : [
+        {
+            "x":132.455278,
+            "y":34.385278},
+        {
+            "x":129.876667,
+            "y":32.749444}]
 };
 kappa=[];
 
@@ -19,7 +26,7 @@ mapObject.colorMapAlly = function(){
         return "countries";
     })
     
-}
+};
 
 mapObject.colorMapDeaths = function(){
     countries= d3.selectAll(".baddies,.ally");
@@ -32,7 +39,7 @@ mapObject.colorMapDeaths = function(){
         return color="fill:rgb(255,"+(255-colorN-60)+","+(255-colorN-60)+")";
     })
     
-}
+};
 
 mapObject.drawMap = function(){    
     mapObject.mapRef = d3.select("#map").append("svg")
@@ -45,14 +52,24 @@ mapObject.drawMap = function(){
 
     let path = d3.geoPath().projection(mapObject.mapProjection);
 
-    mapObject.mapRef.append("g")
+    mapObject.mapRef
             .selectAll("path")
             .data(topojson.feature(mapObject.mapData, mapObject.mapData.objects.units).features)
             .enter().append("path")
             .attr("d", path)
             .attr("class", "countries")
-            .attr("id",function(d) {return d['id']})
-}
+            .attr("id",function(d) {return d['id']});
+
+    // add circles to svg
+    mapObject.mapRef.selectAll("circle")
+        .data(mapObject.testCoord).enter()
+        .append("circle")
+        .attr("cx", function (d) { console.log(d.x); return mapObject.mapProjection([d.x,d.y])[0]; })
+        .attr("cy", function (d) { return mapObject.mapProjection([d.x,d.y])[1]; })
+        .attr("r", "5px")
+        .attr("fill", "yellow")
+
+};
 
 mapObject.createMap = function(dataMap){
    // console.log(dataMap);
@@ -81,4 +98,4 @@ mapObject.createMap = function(dataMap){
         mapObject.drawMap();
         mapObject.colorMapAlly();
     });
-}
+};
