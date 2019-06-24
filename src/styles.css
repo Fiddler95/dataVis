@@ -10,13 +10,20 @@
 }
 
 .ally{
-    fill: blue
+    fill: blue;
+    stroke-width: 1px;
+    stroke:black;
 }
 
 .baddies{
-    fill: red
+    fill: red;
+    stroke-width: 1px;
+    stroke:black;
 }
 
+.activeCountry{
+    fill: yellowgreen!important;
+}
 
 
 .pulsanti {

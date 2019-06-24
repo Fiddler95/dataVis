@@ -1,13 +1,15 @@
 var mapObject = {
+    path:null,
     mapData : null,
     mapRef: null,
     mapProjection : null,
-    mapWidth : '1000',
-    mapHeight : '580',
+    mapWidth : '600',
+    mapHeight : '400',
     createMap: null,
     drawMap: null,
     colorMapAlly:null,
     colorMapDeaths:null,
+    active : null,
     testCoord : [
         {
             "x":132.455278,
@@ -16,7 +18,35 @@ var mapObject = {
             "x":129.876667,
             "y":32.749444}]
 };
-kappa=[];
+function zoomF(d) {
+    var x, y, k;
+  
+    if (d && mapObject.active !== d) {        
+      var centroid =  mapObject.path.centroid(d);
+      x = centroid[0];
+      y = centroid[1]-70;
+      k = 2;
+      mapObject.active = d;
+      if(x>mapObject.mapWidth/ 2) x=x-240;
+      else x=x-30;
+    } else {
+      x = mapObject.mapWidth / 2;
+      y = mapObject.mapHeight / 2;
+      k = 1;
+      mapObject.active = null;
+    }
+  
+    mapObject.mapRef.selectAll("path")
+        .classed("activeCountry",  mapObject.active && function(d) { return d ===  mapObject.active; });
+   
+  
+    mapObject.mapRef.transition()
+        .duration(750)
+        .attr("transform", "translate(" + mapObject.mapWidth / 2 + "," + mapObject.mapHeight / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+        .style("stroke-width", 1.5 / k + "px");
+        console.log(x);
+        console.log(y);
+  }
 
 mapObject.colorMapAlly = function(){
     countries= d3.selectAll(".countries");
@@ -27,6 +57,7 @@ mapObject.colorMapAlly = function(){
     })
     
 };
+
 
 mapObject.colorMapDeaths = function(){
     countries= d3.selectAll(".baddies,.ally");
@@ -47,18 +78,19 @@ mapObject.drawMap = function(){
         .attr("height", mapObject.mapHeight);
 
     mapObject.mapProjection = d3.geoMercator()
-        .scale(130)
+        .scale(80)
         .translate( [mapObject.mapWidth / 2, mapObject.mapHeight / 1.5]);
 
-    let path = d3.geoPath().projection(mapObject.mapProjection);
+    mapObject.path = d3.geoPath().projection(mapObject.mapProjection);
 
     mapObject.mapRef
             .selectAll("path")
             .data(topojson.feature(mapObject.mapData, mapObject.mapData.objects.units).features)
             .enter().append("path")
-            .attr("d", path)
+            .attr("d", mapObject.path)
             .attr("class", "countries")
-            .attr("id",function(d) {return d['id']});
+            .attr("id",function(d) {return d['id']})
+            .on("click", zoomF);
 
     // add circles to svg
     mapObject.mapRef.selectAll("circle")
@@ -73,6 +105,7 @@ mapObject.drawMap = function(){
 
 mapObject.createMap = function(dataMap){
    // console.log(dataMap);
+   mapObject.active=d3.select(null);
     d3.json("data/topojson/world/countries.json", function (error, world) {
         if (error) {
             console.log(error);  //Log the error.
