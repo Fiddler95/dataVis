@@ -4,6 +4,7 @@ var mapObject = {
     mapRef: null,
     mapProjection : null,
     mapTooltip : null,
+    mapInfobox : null,
     mapWidth : '1300',
     mapHeight : '600',
     createMap: null,
@@ -23,24 +24,28 @@ var mapObject = {
 };
 
 mapObject.popUp= function(d) {
-    var feature = d.feature;
-    console.log(d);
-    // var data = feature.properties.data;
-    
-    // var width = 300;
-    // var height = 80;
-    var margin = {left:20,right:15,top:40,bottom:40};
-    // var parse = d3.timeParse("%m");
-    // var format = d3.timeFormat("%b");
-     
-    var div = d3.create("div")
-    var svg = div.append("svg")
-        .attr("width", mapObject.mapWidth+margin.left+margin.right)
-        .attr("height", mapObject.mapHeight+margin.top+margin.bottom);
-    div.html( "<p>TEST</p>"
-       )
-      
-    return div.node();
+    if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
+
+    mapObject.mapInfobox  = mapObject.mapRef.append("g")
+      .attr("transform", "translate(" + mapObject.path.centroid(d)[0]  + "," + mapObject.path.centroid(d)[1] + ")");
+
+    var rect = mapObject.mapInfobox.append("rect")
+      .style("fill", "white")
+      .style("stroke", "steelblue");
+
+      mapObject.mapInfobox.append("text")
+      .text("Name: " + d.properties.name)
+      .attr("dy", "1em")
+      .attr("x", 5);
+
+      mapObject.mapInfobox.append("text")
+      .text("Deaths: " + d.properties.deaths)
+      .attr("dy", "2em")
+      .attr("x", 5);
+
+    var bbox = mapObject.mapInfobox.node().getBBox();
+    rect.attr("width", bbox.width + 5)
+        .attr("height", bbox.height + 5)
       
   }    
 
@@ -70,17 +75,15 @@ mapObject.zoomF=function(d) {
         .duration(750)
         .attr("transform", "translate(" + mapObject.mapWidth / 2 + "," + mapObject.mapHeight / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
         .style("stroke-width", 1.5 / k + "px");
-        console.log(x);
-        console.log(y);
+        
   }
 function onClick(d){
     mapObject.zoomF(d);
     mapObject.popUp(d);
-
+    
 }
 mapObject.colorMapAlly = function(){
     countries= d3.selectAll("path");
-    console.log("amici");
     countries.attr('class',"countries");
     setTimeout(function(){
         countries.attr("style",null)
@@ -116,6 +119,10 @@ mapObject.drawMap = function(){
     mapObject.mapTooltip = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
+
+    mapObject.mapInfobox = d3.select("body").append("div")
+        .attr("class","infobox")
+        .style("opacity",0)
 
     mapObject.mapProjection = d3.geoMercator()
         .scale(180)
