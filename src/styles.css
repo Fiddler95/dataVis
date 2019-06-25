@@ -13,23 +13,31 @@
 
 .countries {
     fill: #eeeeee;
+    transition-property: fill;
+    transition-duration: 4s;
     stroke-width: 0.5px;
     stroke:black;
 }
 
 .ally{
     fill: blue;
+    transition-property: fill;
+    transition-duration: 4s;
     stroke-width: 0.5px;
     stroke:black;
 }
 
 .baddies{
     fill: red;
+    transition-property: fill;
+    transition-duration: 4s;
     stroke-width: 0.5px;
     stroke:black;
 }
 
 .activeCountry{
+    transition-property: fill;
+    transition-duration: 2s;
     fill: yellowgreen!important;
 }
 

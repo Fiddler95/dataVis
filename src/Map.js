@@ -11,6 +11,8 @@ var mapObject = {
     colorMapAlly:null,
     colorMapDeaths:null,
     active : null,
+    zoomF:null,
+    popUp:null,
     testCoord : [
         {
             "x":132.455278,
@@ -19,7 +21,30 @@ var mapObject = {
             "x":129.876667,
             "y":32.749444}]
 };
-function zoomF(d) {
+
+mapObject.popUp= function(d) {
+    var feature = d.feature;
+    console.log(d);
+    // var data = feature.properties.data;
+    
+    // var width = 300;
+    // var height = 80;
+    var margin = {left:20,right:15,top:40,bottom:40};
+    // var parse = d3.timeParse("%m");
+    // var format = d3.timeFormat("%b");
+     
+    var div = d3.create("div")
+    var svg = div.append("svg")
+        .attr("width", mapObject.mapWidth+margin.left+margin.right)
+        .attr("height", mapObject.mapHeight+margin.top+margin.bottom);
+    div.html( "<p>TEST</p>"
+       )
+      
+    return div.node();
+      
+  }    
+
+mapObject.zoomF=function(d) {
     var x, y, k;
   
     if (d && mapObject.active !== d) {        
@@ -48,16 +73,25 @@ function zoomF(d) {
         console.log(x);
         console.log(y);
   }
+function onClick(d){
+    mapObject.zoomF(d);
+    mapObject.popUp(d);
 
+}
 mapObject.colorMapAlly = function(){
     countries= d3.selectAll("path");
     console.log("amici");
-    countries.attr("style",null)
+    countries.attr('class',"countries");
+    setTimeout(function(){
+        countries.attr("style",null)
         .attr('class',function(d){
         if(d.properties.alliance==1) return "ally";
         if(d.properties.alliance==10000) return "baddies";
         return "countries";
     });
+
+    }, 200);
+    
 
     
 };
@@ -96,7 +130,7 @@ mapObject.drawMap = function(){
             .attr("d", mapObject.path)
             .attr("class", "countries")
             .attr("id",function(d) {return d['id']})
-            .on("click", zoomF)
+            .on("click", onClick)
             .on("mouseover", function(d) {
                 mapObject.mapTooltip.transition()
                     .duration(200)
