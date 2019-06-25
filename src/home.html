@@ -17,16 +17,12 @@
 
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapDeaths()">Alliances</a>
-        <a href="#deathCount" class="pulsanti inactive">Casualties</a>
+        <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapAlly()">Alliances</a>
+        <a href="#deathCount" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
         <a href="#contact" class="pulsanti inactive">Contact</a>
         <a href="#about" class="pulsanti inactive">About</a>
     </div>
-    <div class="map-container container">
-        <div class="visualization-main">
-            <div id="map"></div>
-        </div>
-    </div>
+    <div id="map"></div>
 
     <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
 

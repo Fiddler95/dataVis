@@ -3,8 +3,9 @@ var mapObject = {
     mapData : null,
     mapRef: null,
     mapProjection : null,
-    mapWidth : '600',
-    mapHeight : '400',
+    mapTooltip : null,
+    mapWidth : '1300',
+    mapHeight : '600',
     createMap: null,
     drawMap: null,
     colorMapAlly:null,
@@ -24,11 +25,11 @@ function zoomF(d) {
     if (d && mapObject.active !== d) {        
       var centroid =  mapObject.path.centroid(d);
       x = centroid[0];
-      y = centroid[1]-70;
+      y = centroid[1]-100;
       k = 2;
       mapObject.active = d;
-      if(x>mapObject.mapWidth/ 2) x=x-240;
-      else x=x-30;
+      if(x>mapObject.mapWidth/ 2) x=x-500;
+      else x=x-120;
     } else {
       x = mapObject.mapWidth / 2;
       y = mapObject.mapHeight / 2;
@@ -49,27 +50,27 @@ function zoomF(d) {
   }
 
 mapObject.colorMapAlly = function(){
-    countries= d3.selectAll(".countries");
-    countries.attr('class',function(d){
+    countries= d3.selectAll("path");
+    console.log("amici");
+    countries.attr("style",null)
+        .attr('class',function(d){
         if(d.properties.alliance==1) return "ally";
         if(d.properties.alliance==10000) return "baddies";
         return "countries";
-    })
+    });
+
     
 };
 
-
 mapObject.colorMapDeaths = function(){
-    countries= d3.selectAll(".baddies,.ally");
-    
+    countries= d3.selectAll("path");
+    console.log("morte");
     countries.attr('style',function(d){
-        //console.log(d.properties.deaths);
         colorN=parseInt(d.properties.deaths)/25000000*255*2;
-        console.log(colorN);
-        //return color ="fill:rgb(255,255,255)";
         return color="fill:rgb(255,"+(255-colorN-60)+","+(255-colorN-60)+")";
-    })
-    
+    });
+
+
 };
 
 mapObject.drawMap = function(){    
@@ -77,8 +78,13 @@ mapObject.drawMap = function(){
         .attr("width", mapObject.mapWidth)
         .attr("height", mapObject.mapHeight);
 
+    //tooltip
+    mapObject.mapTooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     mapObject.mapProjection = d3.geoMercator()
-        .scale(80)
+        .scale(180)
         .translate( [mapObject.mapWidth / 2, mapObject.mapHeight / 1.5]);
 
     mapObject.path = d3.geoPath().projection(mapObject.mapProjection);
@@ -90,7 +96,21 @@ mapObject.drawMap = function(){
             .attr("d", mapObject.path)
             .attr("class", "countries")
             .attr("id",function(d) {return d['id']})
-            .on("click", zoomF);
+            .on("click", zoomF)
+            .on("mouseover", function(d) {
+                mapObject.mapTooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                mapObject.mapTooltip.html(d.properties.name)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {
+                mapObject.mapTooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+        });
+
 
     // add circles to svg
     mapObject.mapRef.selectAll("circle")
