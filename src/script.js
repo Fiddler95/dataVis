@@ -1,5 +1,7 @@
 globalData = [];
 
+
+
 // Load CSV file
 d3.csv("data/Deaths&Alliances.csv", function (error, csv) {
     if (error) {

@@ -13,34 +13,37 @@
     <script type="text/javascript" src="d3/topojson.js"></script>
     <script type="text/javascript" src="Map.js"></script>
     <script type="text/javascript" src="script.js"></script>
+    
+    
+    
 </head>
 
 <body>
-    <div class="topnav" id="myTopnav">
-        <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapAlly()">Alliances</a>
-        <a href="#deathCount" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
-        <a href="#contact" class="pulsanti inactive">Contact</a>
-        <a href="#about" class="pulsanti inactive">About</a>
-    </div>
-    <div id="map"></div>
+    
+            <div class="topnav" id="myTopnav">
+                    <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapAlly()">Alliances</a>
+                    <a href="#deathCount" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
+                    <a href="#contact" class="pulsanti inactive">Contact</a>
+                    <a href="#about" class="pulsanti inactive">About</a>
+            </div>
+            <div id="map"></div>
+    
+   
 
     <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
 
-    
     <script>
-    var header = document.getElementById("myTopnav");
-    var btns = header.getElementsByClassName("pulsanti");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", " inactive");
-            this.className = "pulsanti active";
-            document.getElementById('hide').value = (this.getAttribute('href'));
-            //console.log(document.getElementById('hide').value);
-        });
-    }
+            var header = document.getElementById("myTopnav");
+            var btns = header.getElementsByClassName("pulsanti");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", " inactive");
+                    this.className = "pulsanti active";
+                    document.getElementById('hide').value = (this.getAttribute('href'));
+                });
+            }
     </script>
-
 </body>
 
 </html>

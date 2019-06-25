@@ -1,15 +1,36 @@
 .topnav {
     background-color: black;
     font-family: "Courier New", sans-serif;
-    height: 100%;
+    height: fit-content;
     width: 100%;
 }
+.grid-container {
+    width: 100%;
+    height: 100%;
+    display: inline-grid;
+    grid-template-columns: auto ;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+
 #map{
     height: 100%;
     width: 100%;
     padding-top: 10vh;
     text-align: center;
 }
+g{
+    width: 100%;
+    height: 100%;
+}
+svg { position:fixed;
+     top:100px; 
+     bottom:0; 
+     left:0; 
+     right:0 ;
+     width: 100%;
+     height: 100%;
+    }
 
 .countries {
     fill: #eeeeee;

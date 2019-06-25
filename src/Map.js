@@ -5,8 +5,8 @@ var mapObject = {
     mapProjection : null,
     mapTooltip : null,
     mapInfobox : null,
-    mapWidth : '1300',
-    mapHeight : '600',
+    mapWidth : '2200',
+    mapHeight : '200',
     createMap: null,
     drawMap: null,
     colorMapAlly:null,
@@ -23,11 +23,24 @@ var mapObject = {
             "y":32.749444}]
 };
 
-mapObject.popUp= function(d) {
+ mapObject.popUp= function(d) {    
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
+    if(mapObject.active==null) return;
+    var x,y;
+    if( mapObject.path.centroid(d)[0]>mapObject.mapWidth/2){        
+        x=0;
+        y=0;
+    }
+    else{
+        x=mapObject.mapWidth/4;
+        y=0;
 
+    }
+    x=mapObject.path.centroid(d)[0];
+    y=mapObject.path.centroid(d)[1];
+    
     mapObject.mapInfobox  = mapObject.mapRef.append("g")
-      .attr("transform", "translate(" + mapObject.path.centroid(d)[0]  + "," + mapObject.path.centroid(d)[1] + ")");
+      .attr("transform", "translate(" + x + "," + y + ")");
 
     var rect = mapObject.mapInfobox.append("rect")
       .style("fill", "white")
@@ -44,8 +57,8 @@ mapObject.popUp= function(d) {
       .attr("x", 5);
 
     var bbox = mapObject.mapInfobox.node().getBBox();
-    rect.attr("width", bbox.width + 5)
-        .attr("height", bbox.height + 5)
+    rect.attr("width", mapObject.mapWidth/4)
+        .attr("height",  mapObject.mapHeight)
       
   }    
 
@@ -111,22 +124,22 @@ mapObject.colorMapDeaths = function(){
 };
 
 mapObject.drawMap = function(){    
-    mapObject.mapRef = d3.select("#map").append("svg")
+    mapObject.mapRef = d3.select("#map").append("svg").append("g")
         .attr("width", mapObject.mapWidth)
         .attr("height", mapObject.mapHeight);
 
     //tooltip
-    mapObject.mapTooltip = d3.select("body").append("div")
+    mapObject.mapTooltip = d3.select("body").append("div").append("g")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-    mapObject.mapInfobox = d3.select("body").append("div")
+    mapObject.mapInfobox = d3.select("body").append("div").append("g")
         .attr("class","infobox")
         .style("opacity",0)
 
     mapObject.mapProjection = d3.geoMercator()
-        .scale(180)
-        .translate( [mapObject.mapWidth / 2, mapObject.mapHeight / 1.5]);
+        .scale(190)
+        .translate( [mapObject.mapWidth / 3, mapObject.mapHeight*3.5]);
 
     mapObject.path = d3.geoPath().projection(mapObject.mapProjection);
 
