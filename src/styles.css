@@ -20,11 +20,16 @@
     text-align: center;
 }
 g{
+    top:0px; 
+     bottom:0; 
+     left:0; 
+     right:0 ;
     width: 100%;
     height: 100%;
 }
-svg { position:fixed;
-     top:100px; 
+#mapSvg { 
+    position:fixed;
+     top:60px; 
      bottom:0; 
      left:0; 
      right:0 ;

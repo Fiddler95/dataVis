@@ -36,7 +36,7 @@ var mapObject = {
         y=0;
 
     }
-    x=mapObject.path.centroid(d)[0];
+    x=mapObject.path.centroid(d)[0]+90;
     y=mapObject.path.centroid(d)[1];
     
     mapObject.mapInfobox  = mapObject.mapRef.append("g")
@@ -56,24 +56,43 @@ var mapObject = {
       .attr("dy", "2em")
       .attr("x", 5);
 
+      var ibSvg=mapObject.mapInfobox.append("svg");
+        console.log(ibSvg);
+      var bubbleScale = d3.scaleSqrt()
+        .domain([0, 25000000])
+        .range([ 1, 30]);
+    var sel=ibSvg.append("g")
+        .selectAll("dot")
+        .data(parseInt(d.properties.deaths)).enter()
+        .append("circle")
+        .attr("cx", 10 )
+        .attr("cy", 10 )
+        .attr("r",20)
+        .style("fill","black");
+        //.attr("r", function (d) { return bubbleScale(d); } )
+        
+
     var bbox = mapObject.mapInfobox.node().getBBox();
-    rect.attr("width", mapObject.mapWidth/4)
-        .attr("height",  mapObject.mapHeight)
+    rect.attr("width", '100')
+        .attr("height",  '90')
+        .style("opacity",0.5)
       
   }    
 
 mapObject.zoomF=function(d) {
     var x, y, k;
-  
+  //if selected, zoom onto it
     if (d && mapObject.active !== d) {        
       var centroid =  mapObject.path.centroid(d);
-      x = centroid[0];
-      y = centroid[1]-100;
+      x = centroid[0]+100;
+      y = centroid[1]-200;
       k = 2;
       mapObject.active = d;
-      if(x>mapObject.mapWidth/ 2) x=x-500;
-      else x=x-120;
-    } else {
+    //   if(centroid[0]>mapObject.mapWidth/ 4) x=x-300 
+    //   else x=x+280;
+    } 
+    //else, reset the view to normal zoom
+    else {
       x = mapObject.mapWidth / 2;
       y = mapObject.mapHeight / 2;
       k = 1;
@@ -114,7 +133,6 @@ mapObject.colorMapAlly = function(){
 
 mapObject.colorMapDeaths = function(){
     countries= d3.selectAll("path");
-    console.log("morte");
     countries.attr('style',function(d){
         colorN=parseInt(d.properties.deaths)/25000000*255*2;
         return color="fill:rgb(255,"+(255-colorN-60)+","+(255-colorN-60)+")";
@@ -124,22 +142,24 @@ mapObject.colorMapDeaths = function(){
 };
 
 mapObject.drawMap = function(){    
+    
     mapObject.mapRef = d3.select("#map").append("svg").append("g")
         .attr("width", mapObject.mapWidth)
         .attr("height", mapObject.mapHeight);
-
+        
     //tooltip
     mapObject.mapTooltip = d3.select("body").append("div").append("g")
         .attr("class", "tooltip")
         .style("opacity", 0);
-
+    document.getElementsByTagName('svg')[0].id = 'mapSvg';
     mapObject.mapInfobox = d3.select("body").append("div").append("g")
         .attr("class","infobox")
         .style("opacity",0)
 
-    mapObject.mapProjection = d3.geoMercator()
+    mapObject.mapProjection = d3.geoMercator()  
         .scale(190)
-        .translate( [mapObject.mapWidth / 3, mapObject.mapHeight*3.5]);
+        .translate( [mapObject.mapWidth / 3.5, mapObject.mapHeight*2])
+        .center([0,40]) ;
 
     mapObject.path = d3.geoPath().projection(mapObject.mapProjection);
 
@@ -151,7 +171,7 @@ mapObject.drawMap = function(){
             .attr("class", "countries")
             .attr("id",function(d) {return d['id']})
             .on("click", onClick)
-            .on("mouseover", function(d) {
+            .on("mouseover", function(d) {                
                 mapObject.mapTooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
