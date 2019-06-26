@@ -4,37 +4,22 @@
     height: fit-content;
     width: 100%;
 }
-.grid-container {
-    width: 100%;
-    height: 100%;
-    display: inline-grid;
-    grid-template-columns: auto ;
-    background-color: #2196F3;
-    padding: 10px;
-  }
+
 
 #map{
-    height: 100%;
-    width: 100%;
-    padding-top: 10vh;
-    text-align: center;
+    margin: 0 auto;
+    height: 1000px;
+    width: 1800px;
+    padding-top: 5vh;
 }
 g{
-    top:0px; 
-     bottom:0; 
-     left:0; 
-     right:0 ;
+    margin: 0 auto;
+   
+} 
+#mapSvg { 
+    margin: 0 auto;
     width: 100%;
     height: 100%;
-}
-#mapSvg { 
-    position:fixed;
-     top:60px; 
-     bottom:0; 
-     left:0; 
-     right:0 ;
-     width: 100%;
-     height: 100%;
     }
 
 .countries {
@@ -170,6 +155,7 @@ text {
     font: 12px sans-serif;
 }
 body{
+    overflow: hidden;
     color: #000;
     background-color: black;
 }

@@ -5,8 +5,8 @@ var mapObject = {
     mapProjection : null,
     mapTooltip : null,
     mapInfobox : null,
-    mapWidth : '2200',
-    mapHeight : '200',
+    mapWidth : '1800',
+    mapHeight : '1000',
     createMap: null,
     drawMap: null,
     colorMapAlly:null,
@@ -84,8 +84,8 @@ mapObject.zoomF=function(d) {
   //if selected, zoom onto it
     if (d && mapObject.active !== d) {        
       var centroid =  mapObject.path.centroid(d);
-      x = centroid[0]+100;
-      y = centroid[1]-200;
+      x = centroid[0];
+      y = centroid[1];
       k = 2;
       mapObject.active = d;
     //   if(centroid[0]>mapObject.mapWidth/ 4) x=x-300 
@@ -144,8 +144,8 @@ mapObject.colorMapDeaths = function(){
 mapObject.drawMap = function(){    
     
     mapObject.mapRef = d3.select("#map").append("svg").append("g")
-        .attr("width", mapObject.mapWidth)
-        .attr("height", mapObject.mapHeight);
+        //.attr("width", mapObject.mapWidth)
+        //.attr("height", mapObject.mapHeight);
         
     //tooltip
     mapObject.mapTooltip = d3.select("body").append("div").append("g")
@@ -157,9 +157,9 @@ mapObject.drawMap = function(){
         .style("opacity",0)
 
     mapObject.mapProjection = d3.geoMercator()  
-        .scale(190)
-        .translate( [mapObject.mapWidth / 3.5, mapObject.mapHeight*2])
-        .center([0,40]) ;
+        .scale(210)
+        .translate( [mapObject.mapWidth / 2, mapObject.mapHeight/1.6]);
+        
 
     mapObject.path = d3.geoPath().projection(mapObject.mapProjection);
 
