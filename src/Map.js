@@ -24,6 +24,7 @@ var mapObject = {
 };
 
  mapObject.popUp= function(d) {    
+    var w=200; 
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
     if(mapObject.active==null) return;
     var x,y;
@@ -39,12 +40,12 @@ var mapObject = {
     x=mapObject.path.centroid(d)[0]+90;
     y=mapObject.path.centroid(d)[1];
     
-    mapObject.mapInfobox  = mapObject.mapRef.append("g")
+    mapObject.mapInfobox  = d3.select("#mapSvg").append("g")
       .attr("transform", "translate(" + x + "," + y + ")");
 
-    var rect = mapObject.mapInfobox.append("rect")
-      .style("fill", "white")
-      .style("stroke", "steelblue");
+     var rect= mapObject.mapInfobox.append("rect")
+      .style("fill","white")
+      .style("stroke","steelblue");
 
       mapObject.mapInfobox.append("text")
       .text("Name: " + d.properties.name)
@@ -56,26 +57,29 @@ var mapObject = {
       .attr("dy", "2em")
       .attr("x", 5);
 
-      var ibSvg=mapObject.mapInfobox.append("svg");
-        console.log(ibSvg);
+      var ibSvg=mapObject.mapInfobox.append("svg")
+      .style("width","300px")
+      .style("height","300px");
+
       var bubbleScale = d3.scaleSqrt()
-        .domain([0, 25000000])
-        .range([ 1, 30]);
-    var sel=ibSvg.append("g")
-        .selectAll("dot")
-        .data(parseInt(d.properties.deaths)).enter()
-        .append("circle")
-        .attr("cx", 10 )
-        .attr("cy", 10 )
-        .attr("r",20)
-        .style("fill","black");
-        //.attr("r", function (d) { return bubbleScale(d); } )
+      .domain([0, 25000000])
+      .range([ 4, 60]);
+
+      ibSvg.append("g").selectAll("circle")
+      .data([parseInt(d.properties.deaths)])
+      .enter()
+      .append("circle")
+      .attr("cx", w/2 )
+      .attr("cy",function(d){return bubbleScale(parseInt(d))+40} )
+      .attr("r", function(d){return bubbleScale(parseInt(d))} )
+      .attr("class","bubbleCircle");
         
 
+    
+
     var bbox = mapObject.mapInfobox.node().getBBox();
-    rect.attr("width", '100')
-        .attr("height",  '90')
-        .style("opacity",0.5)
+    rect.attr("width", w)
+        .attr("height", bbox.height + 5)
       
   }    
 
@@ -143,12 +147,10 @@ mapObject.colorMapDeaths = function(){
 
 mapObject.drawMap = function(){    
     
-    mapObject.mapRef = d3.select("#map").append("svg").append("g")
-        //.attr("width", mapObject.mapWidth)
-        //.attr("height", mapObject.mapHeight);
+    mapObject.mapRef = d3.select("#map").append("svg").append("g");
         
     //tooltip
-    mapObject.mapTooltip = d3.select("body").append("div").append("g")
+    mapObject.mapTooltip = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
     document.getElementsByTagName('svg')[0].id = 'mapSvg';
