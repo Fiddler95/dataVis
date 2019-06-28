@@ -1,6 +1,7 @@
 var mapObject = {
     path:null,
     mapData : null,
+    mapBattles : null,
     mapRef: null,
     mapProjection : null,
     mapTooltip : null,
@@ -81,7 +82,7 @@ var mapObject = {
     rect.attr("width", w)
         .attr("height", bbox.height + 5)
       
-  }    
+  }
 
 mapObject.zoomF=function(d) {
     var x, y, k;
@@ -190,17 +191,17 @@ mapObject.drawMap = function(){
 
     // add circles to svg
     mapObject.mapRef.selectAll("circle")
-        .data(mapObject.testCoord).enter()
+        .data(mapObject.mapBattles).enter()
         .append("circle")
-        .attr("cx", function (d) { console.log(d.x); return mapObject.mapProjection([d.x,d.y])[0]; })
-        .attr("cy", function (d) { return mapObject.mapProjection([d.x,d.y])[1]; })
-        .attr("r", "5px")
+        .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
+        .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
+        .attr("r", "3px")
         .attr("fill", "yellow")
 
 };
 
-mapObject.createMap = function(dataMap){
-   // console.log(dataMap);
+mapObject.createMap = function(dataMap,dataBattle){
+
    mapObject.active=d3.select(null);
     d3.json("data/topojson/world/countries.json", function (error, world) {
         if (error) {
@@ -208,7 +209,7 @@ mapObject.createMap = function(dataMap){
             throw error;
         }
         //console.log(world.objects.units.geometries[0]);
-        for(var i=0;i<dataMap.length;i++){                       
+        for(var i=0;i<dataMap.length;i++){
             let tag=dataMap[i].GeoCode;
             let deaths=dataMap[i].Deaths;
             let alliance=dataMap[i].Alliance;            
@@ -221,8 +222,9 @@ mapObject.createMap = function(dataMap){
             }
 
         }
-        
-        
+
+
+        mapObject.mapBattles=dataBattle;
         mapObject.mapData=world;
         mapObject.drawMap();
         mapObject.colorMapAlly();
