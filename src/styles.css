@@ -53,16 +53,16 @@ g{
 
 .circleY{
     fill: yellow;
-    r: 3px;
-    transition-property: fill;
-    transition-duration: 2s;
+    r: 3;
+    transition-property: fill,r;
+    transition-duration: 1s;
 }
 
 .circleE{
     fill: transparent;
-    r:0px;
-    transition-property: fill;
-    transition-duration: 2s;
+    r:0;
+    transition-property: fill,r;
+    transition-duration: 1s;
 }
 
 .activeCountry{
@@ -153,5 +153,40 @@ div.tooltip {
     border: 0px;
     pointer-events: none;
 }
-
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: scroll; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 30px;
+}
+.infoPanel{
+    position: relative;
+    margin:0 auto;
+    background-color: white;
+    width: 40%; /* Full width */
+    height: 40%; /* Full height */
+}
+.infoContent{
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 80%; /* Full width */
+    height: 80%; /* Full height */
+}
+.close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #000;
+    font-size: 65px;
+    font-weight: bold;
+    cursor: pointer;
+}
 

@@ -12,6 +12,8 @@ var mapObject = {
     drawMap: null,
     colorMapAlly:null,
     colorMapDeaths:null,
+    handleCircleClick:null,
+    return2map:null,
     active : null,
     zoomF:null,
     popUp:null,
@@ -142,18 +144,24 @@ mapObject.colorMapAlly = function(){
 
 mapObject.colorMapDeaths = function(){
 
-    var scala = ["fill:rgb(255,255,204)","fill:rgb(255,204,153)","fill:rgb(255,178,102)","fill:rgb(255,51,51)",
-        "fill:rgb(255,153,51)","fill:rgb(255,229,204)","fill:rgb(255,51,51)","fill:rgb(255,0,0)",
-        "fill:rgb(255,0,0)","fill:rgb(204,0,0)"];
-
+    var colorN = 0;
+    var colorScale = d3.scaleLinear().domain([0,20045724])
+        .interpolate(d3.interpolateHcl)
+        .range([d3.rgb("#B0E0E6"), d3.rgb('#0000CD')]);
     countries= d3.selectAll("path");
     countries.attr('style',function(d){
-        colorN=parseInt((parseInt(d.properties.deaths)/20045725)*10);
-        console.log(colorN);
-        return color=scala[colorN];
+        if(isNaN(d.properties.deaths)){
+            return "fill:rgb(255,255,255)";
+        }
+        else {
+            //colorN = parseInt(parseInt((parseInt(d.properties.deaths) / 20045724) * 100) * 2.55);
+            //console.log(colorN);
+            //return "fill:rgb(255," + (255-colorN) + "," + (255-colorN) + ")";
+            colorN = "fill:"+colorScale(parseInt(d.properties.deaths));
+            console.log(colorN);
+            return colorN;
+        }
     });
-
-
 };
 
 mapObject.drawMap = function(){    
@@ -177,26 +185,26 @@ mapObject.drawMap = function(){
     mapObject.path = d3.geoPath().projection(mapObject.mapProjection);
 
     mapObject.mapRef
-            .selectAll("path")
-            .data(topojson.feature(mapObject.mapData, mapObject.mapData.objects.units).features)
-            .enter().append("path")
-            .attr("d", mapObject.path)
-            .attr("class", "countries")
-            .attr("id",function(d) {return d['id']})
-            .on("click", onClick)
-            .on("mouseover", function(d) {                
-                mapObject.mapTooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                mapObject.mapTooltip.html(d.properties.name)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
-            })
-            .on("mouseout", function(d) {
-                mapObject.mapTooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            });
+        .selectAll("path")
+        .data(topojson.feature(mapObject.mapData, mapObject.mapData.objects.units).features)
+        .enter().append("path")
+        .attr("d", mapObject.path)
+        .attr("class", "countries")
+        .attr("id",function(d) {return d['id']})
+        .on("click", onClick)
+        .on("mouseover", function(d) {
+            mapObject.mapTooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            mapObject.mapTooltip.html(d.properties.name)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+            mapObject.mapTooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
     mapObject.mapRef.selectAll("circle")
         .data(mapObject.mapBattles).enter()
@@ -204,6 +212,8 @@ mapObject.drawMap = function(){
         .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
         .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
         .attr("class", "circleE")
+        .attr("r", "0")
+        .on("click", function(d) {mapObject.handleCircleClick()} )
         .on("mouseover", function(d) {
             mapObject.mapTooltip.transition()
                 .duration(200)
@@ -217,10 +227,6 @@ mapObject.drawMap = function(){
                 .duration(500)
                 .style("opacity", 0);
         })
-
-
-
-
 };
 
 mapObject.createMap = function(dataMap,dataBattle){
@@ -253,3 +259,15 @@ mapObject.createMap = function(dataMap,dataBattle){
         mapObject.colorMapAlly();
     });
 };
+
+mapObject.handleCircleClick=function(){
+
+    document.getElementById('id02').style.display='block';
+
+};
+
+mapObject.return2map = function () {
+    document.getElementById('id02').style.display='none';
+    document.body.style.overflowY = 'auto';
+    d3.select("#" + selected).attr("class", selectedClass);
+}

@@ -20,17 +20,29 @@
 
 <body>
     
-            <div class="topnav" id="myTopnav">
-                    <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapAlly()">Alliances</a>
-                    <a href="#deathCount" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
-                    <a href="#contact" class="pulsanti inactive">Contact</a>
-                    <a href="#about" class="pulsanti inactive">About</a>
-            </div>
-            <div id="map"></div>
-    
-   
+    <div class="topnav" id="myTopnav">
+            <a href="#alliance" class="pulsanti active" onclick="mapObject.colorMapAlly()">Alliances</a>
+            <a href="#deathCount" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
+            <a href="#contact" class="pulsanti inactive">Contact</a>
+            <a href="#about" class="pulsanti inactive">About</a>
+    </div>
+    <div id="map"></div>
 
     <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
+
+    <div id="id02" class="modal">
+        <div id="infoPanel" class="infoPanel">
+            <span onclick="mapObject.return2map()" class="close" title="Chiudi">&times;</span>
+            <div id="infoContent" class="infoContent">
+                <h3>First Place:</h3>
+                <span id="p_1"></span>
+                <h3>Second Place:</h3>
+                <span id="p_2"></span>
+                <h3>Partecipations:</h3>
+                <span id="p_3"></span>
+            </div>
+        </div>
+    </div>
 
     <script>
             var header = document.getElementById("myTopnav");
