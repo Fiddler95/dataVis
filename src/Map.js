@@ -24,7 +24,7 @@ var mapObject = {
             "y":32.749444}]
 };
 
- mapObject.popUp= function(d) {    
+mapObject.popUp= function(d) {
     var w=200; 
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
     if(mapObject.active==null) return;
@@ -82,26 +82,30 @@ var mapObject = {
     rect.attr("width", w)
         .attr("height", bbox.height + 5)
       
-  }
+  };
 
 mapObject.zoomF=function(d) {
     var x, y, k;
   //if selected, zoom onto it
     if (d && mapObject.active !== d) {        
-      var centroid =  mapObject.path.centroid(d);
-      x = centroid[0];
-      y = centroid[1];
-      k = 2;
-      mapObject.active = d;
-    //   if(centroid[0]>mapObject.mapWidth/ 4) x=x-300 
-    //   else x=x+280;
+        var centroid =  mapObject.path.centroid(d);
+        x = centroid[0];
+        y = centroid[1];
+        k = 2.5;
+        mapObject.active = d;
+        // add circles to svg
+
+        mapObject.mapRef.selectAll("circle")
+            .attr("class", "circleY")
     } 
     //else, reset the view to normal zoom
     else {
-      x = mapObject.mapWidth / 2;
-      y = mapObject.mapHeight / 2;
-      k = 1;
-      mapObject.active = null;
+        mapObject.mapRef.selectAll("circle")
+            .attr("class", "circleE");
+        x = mapObject.mapWidth / 2;
+        y = mapObject.mapHeight / 2;
+        k = 1;
+        mapObject.active = null;
     }
   
     mapObject.mapRef.selectAll("path")
@@ -113,7 +117,7 @@ mapObject.zoomF=function(d) {
         .attr("transform", "translate(" + mapObject.mapWidth / 2 + "," + mapObject.mapHeight / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
         .style("stroke-width", 1.5 / k + "px");
         
-  }
+  };
 function onClick(d){
     mapObject.zoomF(d);
     mapObject.popUp(d);
@@ -137,10 +141,16 @@ mapObject.colorMapAlly = function(){
 };
 
 mapObject.colorMapDeaths = function(){
+
+    var scala = ["fill:rgb(255,255,204)","fill:rgb(255,204,153)","fill:rgb(255,178,102)","fill:rgb(255,51,51)",
+        "fill:rgb(255,153,51)","fill:rgb(255,229,204)","fill:rgb(255,51,51)","fill:rgb(255,0,0)",
+        "fill:rgb(255,0,0)","fill:rgb(204,0,0)"];
+
     countries= d3.selectAll("path");
     countries.attr('style',function(d){
-        colorN=parseInt(d.properties.deaths)/25000000*255*2;
-        return color="fill:rgb(255,"+(255-colorN-60)+","+(255-colorN-60)+")";
+        colorN=parseInt((parseInt(d.properties.deaths)/20045725)*10);
+        console.log(colorN);
+        return color=scala[colorN];
     });
 
 
@@ -186,17 +196,30 @@ mapObject.drawMap = function(){
                 mapObject.mapTooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
-        });
+            });
 
-
-    // add circles to svg
     mapObject.mapRef.selectAll("circle")
         .data(mapObject.mapBattles).enter()
         .append("circle")
         .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
         .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
-        .attr("r", "3px")
-        .attr("fill", "yellow")
+        .attr("class", "circleE")
+        .on("mouseover", function(d) {
+            mapObject.mapTooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            mapObject.mapTooltip.html(d.battle_name)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY) + "px");
+        })
+        .on("mouseout", function(d) {
+            mapObject.mapTooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        })
+
+
+
 
 };
 

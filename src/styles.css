@@ -51,6 +51,20 @@ g{
     stroke:black;
 }
 
+.circleY{
+    fill: yellow;
+    r: 3px;
+    transition-property: fill;
+    transition-duration: 2s;
+}
+
+.circleE{
+    fill: transparent;
+    r:0px;
+    transition-property: fill;
+    transition-duration: 2s;
+}
+
 .activeCountry{
     transition-property: fill;
     transition-duration: 2s;
@@ -132,7 +146,7 @@ div.tooltip {
     position: absolute;
     text-align: center;
     width: 80px;
-    height: 14px;
+    height: fit-content;
     padding: 2px;
     font: 12px sans-serif;
     background: #fff;
