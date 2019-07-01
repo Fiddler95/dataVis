@@ -1,50 +1,50 @@
-id,battle_name,year,country,front,dead_count,battle/siege,lat,long
-1,Battle of Berlin,1945,Germany,,1298745,1,52.520008,13.404954
-2,Battle of Okinawa,1945,Japan,,82000,1,26.501301,127.945404
-3,Battle of Manila,1945,Philippines,,500000,1,14.599512,120.984222
-4,Warsaw Uprising,1944,Poland,,200000,1,52.229675,21.012230
-5,Siege of Budapest,1944-1945,Hungary,,422000,1,47497.913,19.040236
-6,Battle of Normandy,1944,France,,795000,1,49.359610,-0.878130
-7,Battle of the Bulge,1944-1945,Belgium,,200000,1,50.424641,6.028328
-8,Battle of Changde,1943,China,,100000,1,29.031940,111.678101
-9,Battle of West Hubei,1943,China,,115830,1,30.737812,112.238403
-10,Third Battle of Changsha,1942,China,,84862,1,28.228209,112.938812
-11,Battle of Stalingrad,1942-1943,USSR,,1798619,1,48.708050,44.51330211
-12,Battle of South Shanxi,1941,China,,120000,1,37.242565,111.856857
-13,Siege of Odessa,1941,USSR,,133.813,1,46.482525,30.723309
-14,Battle of Kiev,1941,USSR,,700544,1,50.450100,30.523399
-15,Siege of Sevastpol,1941-1942,USSR,,236473,1,44.550650,33.538950
-16,Siege of Leningrad,1941-1944,USSR,,4500000,1,59.934280,30.335098
-17,Battle of Dunkirk,1940,France,,88000,1,51.034389,2.376800
-18,Battle of Luzon,1945,Philippines,,345000,0,16.566233,121.262634
-19,Battle of the Rhineland,1945,France,West,82000,0,51.985104,5.898730
-20,Battle of Iwo Jima,1945,Japan,Asia,48000,0,13.562130,144.918762
-21,Battle of West Hunan,1945,China,Asia,50000,0,27.440950,109.678047
-22,Battle of Hurtgen Forest,1944-1945,Germany,West,63000,0,50.710940,6.378790
-23,Battle of Monte Cassino,1944,Italy,West,185000,0,41.5134069,14.262484
-24,Battle of Narva,1944,Estonia,East,550000,0,59.3794142,28.1993892
-25,Battle of Anzio,1944,Italy,West,52200,0,41.4481261,12.6286879
-26,Jassy-Kishinev Offensive,1944,Romania,East,700000,0,47.161494,27.5840504
-27,Ichi-Go,1944,China,Asia,1300000,0,34.0000001,113.9999999
-28,Pearl Harbor,1941,Hawaii,Asia,2500,0,45.1065075,-85.3488701
-29,Battle of Saipan,1944,Mariana Island,Asia,43500,0,15.1909828,145.7468535
-30,Falaise pocket,1944,France,West,140000,0,48.8964741,-0.1999129
-31,Battle of Leyte Gulf,1944,Philippines,Asia,12000,0,10.904087,124.6954535
-32,Battle of Kursk,1943,USSR,East,300000,0,51.739433,36.179604
-33,Invasion of Sicily,1943,Italy,West,36000,0,37.1016361,13.9376147
-34,Battle of Smolensk,1943,USSR,East,522059,0,54.77897,32.0471812
-35,Battle of the Kerch Peninsula,1942,USSR,East,176000,0,45.3534002,36.4538645
-36,Battle of Kharkov,1942,USSR,East,300000,0,49.9914255,36.2722661
-37,Battle of Gazala,1942,Libya,Africa,148000,0,32.1442901,23.357054
-38,Battle of El Alamein,1942,Egypt,Africa,80000,0,30.833944,28.949268
-39,Battle of Keren,1941,Eritrea,Africa,20000,0,15.780477,38.453606
-40,Battle of Greece,1940-1941,Greece,West,150000,0,37.9841493,23.7279843
-41,Battle of Moscow,1941,USSR,East,1000000,0,55.7504461,37.6174943
-42,Battle of Hong Kong,1941,China,Asia,18000,0,22.2793278,114.1628131
-43,Battle of Crete,1941,Greece,West,16700,0,35.2788061,24.9342885
-44,Operation Weserubung,1940,Denmark,West,12800,0,55.6867243,12.5700724
-45,Battle of France,1940,France,West,469000,0,48.8566969,2.3514616
-46,Winter War,1939-1940,Finland,East,170000,0,60.1674098,24.9425769
-47,Invasion of Poland,1939,Poland,East,310000,0,51.6765688,18.7800237
-48,Battle of Suizao,1939,China,Asia,49000,0,31.6921655,113.375823
-49,Yellow River Flood ,1938,China,Asia,800000,0,34.746613,113.625328
+id,battle_name,year,country,front,dead_count,battle/siege,lat,long,descrip,srcP
+1,Battle of Berlin,1945,Germany,,1298745,1,52.520008,13.404954,"The Battle ofa Berlin, designated the Berlin Strategic Offensive Operation by the Soviet Union, and also known as the Fall of Berlin, was one of the last major offensives of the European theatre of World War II.",Battle of Berlin.jpg
+2,Battle of Okinawa,1945,Japan,,82000,1,26.501301,127.945404,"The Battle of Okinawa, codenamed Operation Iceberg,[19] was a major battle of the Pacific War fought on the island of Okinawa by United States Marine and Army forces against the Imperial Japanese Army",https://en.wikipedia.org/wiki/Battle_of_Okinawa#/media/File:Ww2_158.jpg
+3,Battle of Manila,1945,Philippines,,500000,1,14.599512,120.984222,"",
+4,Warsaw Uprising,1944,Poland,,200000,1,52.229675,21.012230,"",
+5,Siege of Budapest,1944-1945,Hungary,,422000,1,47497.913,19.040236,"",
+6,Battle of Normandy,1944,France,,795000,1,49.359610,-0.878130,"",
+7,Battle of the Bulge,1944-1945,Belgium,,200000,1,50.424641,6.028328,"",
+8,Battle of Changde,1943,China,,100000,1,29.031940,111.678101,"",
+9,Battle of West Hubei,1943,China,,115830,1,30.737812,112.238403,"",
+10,Third Battle of Changsha,1942,China,,84862,1,28.228209,112.938812,"",
+11,Battle of Stalingrad,1942-1943,USSR,,1798619,1,48.708050,44.51330211,"",
+12,Battle of South Shanxi,1941,China,,120000,1,37.242565,111.856857,"",
+13,Siege of Odessa,1941,USSR,,133.813,1,46.482525,30.723309,"",
+14,Battle of Kiev,1941,USSR,,700544,1,50.450100,30.523399,"",
+15,Siege of Sevastpol,1941-1942,USSR,,236473,1,44.550650,33.538950,"",
+16,Siege of Leningrad,1941-1944,USSR,,4500000,1,59.934280,30.335098,"",
+17,Battle of Dunkirk,1940,France,,88000,1,51.034389,2.376800,"",
+18,Battle of Luzon,1945,Philippines,,345000,0,16.566233,121.262634,"",
+19,Battle of the Rhineland,1945,France,West,82000,0,51.985104,5.898730,"",
+20,Battle of Iwo Jima,1945,Japan,Asia,48000,0,13.562130,144.918762,"",
+21,Battle of West Hunan,1945,China,Asia,50000,0,27.440950,109.678047,"",
+22,Battle of Hurtgen Forest,1944-1945,Germany,West,63000,0,50.710940,6.378790,"",
+23,Battle of Monte Cassino,1944,Italy,West,185000,0,41.5134069,14.262484,"",
+24,Battle of Narva,1944,Estonia,East,550000,0,59.3794142,28.1993892,"",
+25,Battle of Anzio,1944,Italy,West,52200,0,41.4481261,12.6286879,"",
+26,Jassy-Kishinev Offensive,1944,Romania,East,700000,0,47.161494,27.5840504,"",
+27,Ichi-Go,1944,China,Asia,1300000,0,34.0000001,113.9999999,"",
+28,Pearl Harbor,1941,Hawaii,Asia,2500,0,45.1065075,-85.3488701,"",
+29,Battle of Saipan,1944,Mariana Island,Asia,43500,0,15.1909828,145.7468535,"",
+30,Falaise pocket,1944,France,West,140000,0,48.8964741,-0.1999129,"",
+31,Battle of Leyte Gulf,1944,Philippines,Asia,12000,0,10.904087,124.6954535,"",
+32,Battle of Kursk,1943,USSR,East,300000,0,51.739433,36.179604,"",
+33,Invasion of Sicily,1943,Italy,West,36000,0,37.1016361,13.9376147,"",
+34,Battle of Smolensk,1943,USSR,East,522059,0,54.77897,32.0471812,"",
+35,Battle of the Kerch Peninsula,1942,USSR,East,176000,0,45.3534002,36.4538645,"",
+36,Battle of Kharkov,1942,USSR,East,300000,0,49.9914255,36.2722661,"",
+37,Battle of Gazala,1942,Libya,Africa,148000,0,32.1442901,23.357054,"",
+38,Battle of El Alamein,1942,Egypt,Africa,80000,0,30.833944,28.949268,"",
+39,Battle of Keren,1941,Eritrea,Africa,20000,0,15.780477,38.453606,"",
+40,Battle of Greece,1940-1941,Greece,West,150000,0,37.9841493,23.7279843,"",
+41,Battle of Moscow,1941,USSR,East,1000000,0,55.7504461,37.6174943,"",
+42,Battle of Hong Kong,1941,China,Asia,18000,0,22.2793278,114.1628131,"",
+43,Battle of Crete,1941,Greece,West,16700,0,35.2788061,24.9342885,"",
+44,Operation Weserubung,1940,Denmark,West,12800,0,55.6867243,12.5700724,"",
+45,Battle of France,1940,France,West,469000,0,48.8566969,2.3514616,"",
+46,Winter War,1939-1940,Finland,East,170000,0,60.1674098,24.9425769,"",
+47,Invasion of Poland,1939,Poland,East,310000,0,51.6765688,18.7800237,"",
+48,Battle of Suizao,1939,China,Asia,49000,0,31.6921655,113.375823,"",
+49,Yellow River Flood ,1938,China,Asia,800000,0,34.746613,113.625328,"",

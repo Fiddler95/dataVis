@@ -145,9 +145,8 @@ mapObject.colorMapAlly = function(){
 mapObject.colorMapDeaths = function(){
 
     var colorN = 0;
-    var colorScale = d3.scaleLinear().domain([0,20045724])
-        .interpolate(d3.interpolateHcl)
-        .range([d3.rgb("#B0E0E6"), d3.rgb('#0000CD')]);
+    var colorScale = d3.scaleLog().base(Math.E).domain([Math.exp(0), Math.exp(17)])
+        .range([d3.rgb("#ffffff"), d3.rgb('#cc0000')]);
     countries= d3.selectAll("path");
     countries.attr('style',function(d){
         if(isNaN(d.properties.deaths)){
@@ -158,7 +157,6 @@ mapObject.colorMapDeaths = function(){
             //console.log(colorN);
             //return "fill:rgb(255," + (255-colorN) + "," + (255-colorN) + ")";
             colorN = "fill:"+colorScale(parseInt(d.properties.deaths));
-            console.log(colorN);
             return colorN;
         }
     });
@@ -175,7 +173,7 @@ mapObject.drawMap = function(){
     document.getElementsByTagName('svg')[0].id = 'mapSvg';
     mapObject.mapInfobox = d3.select("body").append("div").append("g")
         .attr("class","infobox")
-        .style("opacity",0)
+        .style("opacity",0);
 
     mapObject.mapProjection = d3.geoMercator()  
         .scale(210)
@@ -213,7 +211,7 @@ mapObject.drawMap = function(){
         .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
         .attr("class", "circleE")
         .attr("r", "0")
-        .on("click", function(d) {mapObject.handleCircleClick()} )
+        .on("click", function(d) {mapObject.handleCircleClick(d)} )
         .on("mouseover", function(d) {
             mapObject.mapTooltip.transition()
                 .duration(200)
@@ -260,9 +258,13 @@ mapObject.createMap = function(dataMap,dataBattle){
     });
 };
 
-mapObject.handleCircleClick=function(){
-
+mapObject.handleCircleClick=function(d){
+    console.log(d);
     document.getElementById('id02').style.display='block';
+    document.getElementById('p_1').innerHTML = d.battle_name;
+    document.getElementById('p_2').innerHTML = d.descrip;
+    document.getElementById('pic').src = d.srcP;
+    //document.getElementById('pic').src = "data/pics/"+d.srcP;
 
 };
 
@@ -270,4 +272,4 @@ mapObject.return2map = function () {
     document.getElementById('id02').style.display='none';
     document.body.style.overflowY = 'auto';
     d3.select("#" + selected).attr("class", selectedClass);
-}
+};
