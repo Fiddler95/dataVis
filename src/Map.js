@@ -271,5 +271,4 @@ mapObject.handleCircleClick=function(d){
 mapObject.return2map = function () {
     document.getElementById('id02').style.display='none';
     document.body.style.overflowY = 'auto';
-    d3.select("#" + selected).attr("class", selectedClass);
 };

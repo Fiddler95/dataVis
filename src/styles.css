@@ -190,3 +190,8 @@ div.tooltip {
     cursor: pointer;
 }
 
+#pic {
+    border-radius: 8px;
+    padding: 5px;
+    width: 150px;
+}
