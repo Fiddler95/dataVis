@@ -259,7 +259,6 @@ mapObject.createMap = function(dataMap,dataBattle){
 };
 
 mapObject.handleCircleClick=function(d){
-    console.log(d);
     document.getElementById('id02').style.display='block';
     document.getElementById('p_1').innerHTML = d.battle_name;
     document.getElementById('p_2').innerHTML = d.descrip;

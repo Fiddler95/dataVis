@@ -170,14 +170,13 @@ div.tooltip {
     position: relative;
     margin:0 auto;
     background-color: white;
-    width: 40%; /* Full width */
-    height: 40%; /* Full height */
+    width: 50vw;
+    height: fit-content;
+    padding: 2% 5% 5% 5%
 }
 .infoContent{
     margin: 0 auto;
-    padding-top: 30px;
-    width: 80%; /* Full width */
-    height: 80%; /* Full height */
+    padding-bottom: 5%;
 }
 .close {
     /* Position it in the top right corner outside of the modal */
@@ -191,7 +190,10 @@ div.tooltip {
 }
 
 #pic {
-    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15%;
     padding: 5px;
-    width: 150px;
+    width: 30%;
+    height: 30%;
 }
