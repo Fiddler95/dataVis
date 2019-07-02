@@ -5,6 +5,7 @@ var mapObject = {
     mapRef: null,
     mapProjection : null,
     mapTooltip : null,
+    mapLegend : null,
     mapInfobox : null,
     mapWidth : '1800',
     mapHeight : '1000',
@@ -126,6 +127,7 @@ function onClick(d){
     
 }
 mapObject.colorMapAlly = function(){
+    if(mapObject.mapLegend!=null){mapObject.mapLegend.remove();}
     countries= d3.selectAll("path");
     countries.attr('class',"countries");
     setTimeout(function(){
@@ -137,14 +139,20 @@ mapObject.colorMapAlly = function(){
     });
 
     }, 200);
-    
+    mapObject.mapLegend = mapObject.mapRef.append("svg").attr("class", "legend");
+    mapObject.mapLegend.append("ellipse").attr("cx",100).attr("cy",800).attr("rx", 6).attr("ry", 6).style("fill", "#084B8A");
+    mapObject.mapLegend.append("ellipse").attr("cx",100).attr("cy",830).attr("rx", 6).attr("ry", 6).style("fill", "#B43104");
+    mapObject.mapLegend.append("text").attr("x", 120).attr("y", 800).text("Allies").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
+    mapObject.mapLegend.append("text").attr("x", 120).attr("y", 830).text("Axis").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
 
     
 };
 
 mapObject.colorMapDeaths = function(){
-
+    if(mapObject.mapLegend!=null){mapObject.mapLegend.remove();}
     var colorN = 0;
+    var keys=[0,1,2,3,4,5];
+    var n = [0,1000,100000,1000000,10000000];
     var colorScale = d3.scaleLog().base(Math.E).domain([Math.exp(0), Math.exp(17)])
         .range([d3.rgb("#ffffff"), d3.rgb('#cc0000')]);
     countries= d3.selectAll("path");
@@ -160,6 +168,21 @@ mapObject.colorMapDeaths = function(){
             return colorN;
         }
     });
+    mapObject.mapLegend = mapObject.mapRef.append("svg").attr("class", "legend");
+    for(var j=0;j<keys.length;j++){
+        let y = 710 + j*30;
+        let g = colorScale(n[j]);
+        mapObject.mapLegend
+            .append("ellipse")
+            .attr("cx",100)
+            .attr("cy",y)
+            .attr("rx", 6)
+            .attr("ry", 6)
+            .style("fill",g);
+
+    }
+
+    //forloop
 };
 
 mapObject.drawMap = function(){    
@@ -210,7 +233,7 @@ mapObject.drawMap = function(){
         .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
         .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
         .attr("class", "circleE")
-        .attr("r", "0")
+        .attr("fill", function (d) { if(d.battle_siege == 1){return "yellow"} else {return "green"}})
         .on("click", function(d) {mapObject.handleCircleClick(d)} )
         .on("mouseover", function(d) {
             mapObject.mapTooltip.transition()
@@ -224,7 +247,7 @@ mapObject.drawMap = function(){
             mapObject.mapTooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
-        })
+        });
 };
 
 mapObject.createMap = function(dataMap,dataBattle){
@@ -260,10 +283,22 @@ mapObject.createMap = function(dataMap,dataBattle){
 
 mapObject.handleCircleClick=function(d){
     document.getElementById('id02').style.display='block';
-    document.getElementById('p_1').innerHTML = d.battle_name;
-    document.getElementById('p_2').innerHTML = d.descrip;
+    document.getElementById('battle_title').innerHTML = d.battle_name;
+    document.getElementById('battle_description').innerHTML = d.descrip;
+    document.getElementById('year').innerHTML = "Year: "+d.year;
+    document.getElementById('d_count').innerHTML = "Casualties: "+d.dead_count;
+    fronte="";
+    if(d.dead_count=="East"){
+        fronte="Eastern Front"
+    }
+    else if(d.dead_count=="West"){
+        fronte="Western Front"
+    }
+    else {
+        fronte="Asian Front"
+    }
+    document.getElementById('front').innerHTML = "Front: "+fronte;
     document.getElementById('pic').src = d.srcP;
-    //document.getElementById('pic').src = "data/pics/"+d.srcP;
 
 };
 

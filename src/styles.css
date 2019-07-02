@@ -30,45 +30,46 @@ g{
 .countries {
     fill: #eeeeee;
     transition-property: fill;
-    transition-duration: 4s;
+    transition-duration: 2s;
     stroke-width: 0.5px;
     stroke:black;
 }
 
 .ally{
-    fill: blue;
-    transition-property: fill;
-    transition-duration: 4s;
+    fill: #084B8A;
+    transition-property: fill,stroke,stroke-width;
+    transition-duration: 2s;
     stroke-width: 0.5px;
     stroke:black;
+    opacity: 1;
 }
 
 .baddies{
-    fill: red;
-    transition-property: fill;
-    transition-duration: 4s;
+    fill: #B43104;
+    transition-property: fill,stroke,stroke-width;
+    transition-duration: 2s;
     stroke-width: 0.5px;
     stroke:black;
+    opacity: 1;
 }
 
 .circleY{
-    fill: yellow;
     r: 3;
-    transition-property: fill,r;
+    transition-property: r;
     transition-duration: 1s;
 }
 
 .circleE{
-    fill: transparent;
     r:0;
-    transition-property: fill,r;
+    transition-property: r;
     transition-duration: 1s;
 }
 
 .activeCountry{
-    transition-property: fill;
+    stroke:#F4FA58;
+    stroke-width: 1.5px;
+    transition-property: stroke;
     transition-duration: 2s;
-    fill: yellowgreen!important;
 }
 
 
@@ -169,14 +170,15 @@ div.tooltip {
 .infoPanel{
     position: relative;
     margin:0 auto;
+    border-radius: 5%;
     background-color: white;
     width: 50vw;
     height: fit-content;
-    padding: 2% 5% 5% 5%
+    padding: 2% 5% 1% 5%
 }
 .infoContent{
     margin: 0 auto;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
 }
 .close {
     /* Position it in the top right corner outside of the modal */
@@ -190,10 +192,45 @@ div.tooltip {
 }
 
 #pic {
-    display: block;
-    margin: 0 auto;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 10px;
     border-radius: 15%;
     padding: 5px;
-    width: 30%;
-    height: 30%;
+    width: 40%;
+    height: 40%;
+}
+
+#battle_title {
+    font-family: "Courier New", sans-serif;
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+#battle_description {
+    font-family: "Courier New", sans-serif;
+    font-size: 1.1vw;
+    padding-bottom: 0;
+}
+
+#d_count {
+    font-family: "Courier New", sans-serif;
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+#front {
+    font-family: "Courier New", sans-serif;
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+#year {
+    font-family: "Courier New", sans-serif;
+    font-weight: bold;
+    font-size: 1.2vw;
+}
+
+.legend{
+    cursor: pointer;
 }
