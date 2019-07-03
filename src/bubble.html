@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>The Impact of WWII</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="#battles" class="pulsanti active" onclick="mapObject.colorMapAlly()">Battles</a>
+    <a href="#casualties" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
+    <a href="home.html"  class="pulsanti inactive" style="float: right">Maps</a>
+  </div>
+
+  <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
+
+  <div class="container">
+    <h1>Gates Foundation Educational Spending</h1>
+    <div id="toolbar">
+      <a href="#" id="all" class="button active">All Grants</a>
+      <a href="#" id="year" class="button">Grants By Year</a>
+    </div>
+    <div id="vis"></div>
+  </div>
+
+  <script>
+      var header = document.getElementById("myTopnav");
+      var btns = header.getElementsByClassName("pulsanti");
+      for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+              var current = document.getElementsByClassName("active");
+              current[0].className = current[0].className.replace(" active", " inactive");
+              this.className = "pulsanti active";
+              document.getElementById('hide').value = (this.getAttribute('href'));
+          });
+      }
+  </script>
+
+  <script src="//d3js.org/d3.v4.min.js"></script>
+  <script src="src/tooltip.js"></script>
+  <script src="src/bubble_chart.js"></script>
+
+
+</body>
+</html>
