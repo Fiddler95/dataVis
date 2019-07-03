@@ -32,15 +32,7 @@ mapObject.popUp= function(d) {
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
     if(mapObject.active==null) return;
     var x,y;
-    if( mapObject.path.centroid(d)[0]>mapObject.mapWidth/2){        
-        x=0;
-        y=0;
-    }
-    else{
-        x=mapObject.mapWidth/4;
-        y=0;
 
-    }
     x=mapObject.path.centroid(d)[0]+90;
     y=mapObject.path.centroid(d)[1];
     
@@ -180,9 +172,16 @@ mapObject.colorMapDeaths = function(){
             .attr("ry", 6)
             .style("fill",g);
 
+        mapObject.mapLegend
+            .append("text")
+            .attr("x", 120)
+            .attr("y", y)
+            .text(n[j])
+            .style("font-size", "15px")
+            .style('fill', 'white')
+            .attr("alignment-baseline","middle");
     }
 
-    //forloop
 };
 
 mapObject.drawMap = function(){    
@@ -233,7 +232,8 @@ mapObject.drawMap = function(){
         .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
         .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
         .attr("class", "circleE")
-        .attr("fill", function (d) { if(d.battle_siege == 1){return "yellow"} else {return "green"}})
+        //.attr("fill", function (d) { if(d.battle_siege == 1){return "#5E610B"} else {return "#0B615E"}})
+        .attr("fill", function (d) { if(d.battle_siege == 1){return "#80A4ED"} else {return "#D4CB92"}})
         .on("click", function(d) {mapObject.handleCircleClick(d)} )
         .on("mouseover", function(d) {
             mapObject.mapTooltip.transition()
@@ -288,10 +288,10 @@ mapObject.handleCircleClick=function(d){
     document.getElementById('year').innerHTML = "Year: "+d.year;
     document.getElementById('d_count').innerHTML = "Casualties: "+d.dead_count;
     fronte="";
-    if(d.dead_count=="East"){
+    if(d.front=="East"){
         fronte="Eastern Front"
     }
-    else if(d.dead_count=="West"){
+    else if(d.front=="West"){
         fronte="Western Front"
     }
     else {

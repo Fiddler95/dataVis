@@ -55,12 +55,16 @@ g{
 
 .circleY{
     r: 3;
+    stroke-width: 0.5px;
+    stroke:black;
     transition-property: r;
     transition-duration: 1s;
 }
 
 .circleE{
     r:0;
+    stroke-width: 0.5px;
+    stroke:black;
     transition-property: r;
     transition-duration: 1s;
 }
