@@ -193,7 +193,7 @@ function bubbleChart() {
    */
   function ticked() {
     bubbles
-      .attr('cx', function (d) { return d.x; })
+      .attr('cx', function (d) {console.log(d.length); return d.x; })
       .attr('cy', function (d) { return d.y; });
   }
 

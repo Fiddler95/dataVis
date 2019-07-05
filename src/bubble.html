@@ -14,16 +14,14 @@
     <a href="home.html"  class="pulsanti inactive" style="float: right">Maps</a>
   </div>
 
-  <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
-
-  <div class="container">
-    <h1>Gates Foundation Educational Spending</h1>
-    <div id="toolbar">
-      <a href="#" id="all" class="button active">All Grants</a>
-      <a href="#" id="year" class="button">Grants By Year</a>
-    </div>
-    <div id="vis"></div>
+  <div id="toolbar">
+    <a href="#" id="all" class="pulsanti active">All</a>
+    <a href="#" id="side" class="pulsanti" style="position: relative">Side</a>
+    <a href="#" id="dead" class="pulsanti" style="position: relative">Casualties</a>
   </div>
+  <div id="vis"></div>
+
+  <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>
 
   <script>
       var header = document.getElementById("myTopnav");
@@ -39,8 +37,7 @@
   </script>
 
   <script src="//d3js.org/d3.v4.min.js"></script>
-  <script src="src/tooltip.js"></script>
-  <script src="src/bubble_chart.js"></script>
+  <script src="Bubble.js"></script>
 
 
 </body>

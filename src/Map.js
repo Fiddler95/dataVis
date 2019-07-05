@@ -125,8 +125,8 @@ mapObject.colorMapAlly = function(){
     setTimeout(function(){
         countries.attr("style",null)
         .attr('class',function(d){
-        if(d.properties.alliance==1) return "ally";
-        if(d.properties.alliance==10000) return "baddies";
+        if(d.properties.alliance=="Allies") return "ally";
+        if(d.properties.alliance=="Axis") return "baddies";
         return "countries";
     });
 

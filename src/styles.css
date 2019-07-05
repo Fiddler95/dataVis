@@ -150,7 +150,7 @@ body{
 div.tooltip {
     position: absolute;
     text-align: center;
-    width: 80px;
+    width: fit-content;
     height: fit-content;
     padding: 2px;
     font: 12px sans-serif;
@@ -237,4 +237,27 @@ div.tooltip {
 
 .legend{
     cursor: pointer;
+}
+
+#vis{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#toolbar{
+    position: absolute;
+    float: left;
+    padding: 50px;
+    width: 5vw;
+}
+
+.name{
+    font-family: "Courier New", sans-serif;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.value{
+    font-family: "Courier New", sans-serif;
+    font-size: medium;
 }
