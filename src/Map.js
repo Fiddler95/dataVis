@@ -7,8 +7,8 @@ var mapObject = {
     mapTooltip : null,
     mapLegend : null,
     mapInfobox : null,
-    mapWidth : '1800',
-    mapHeight : '1000',
+    mapWidth : '1200',
+    mapHeight : '700',
     createMap: null,
     drawMap: null,
     colorMapAlly:null,
@@ -86,7 +86,7 @@ mapObject.zoomF=function(d) {
         var centroid =  mapObject.path.centroid(d);
         x = centroid[0];
         y = centroid[1];
-        k = 2.5;
+        k = 2;
         mapObject.active = d;
         // add circles to svg
 
@@ -132,10 +132,10 @@ mapObject.colorMapAlly = function(){
 
     }, 200);
     mapObject.mapLegend = mapObject.mapRef.append("svg").attr("class", "legend");
-    mapObject.mapLegend.append("ellipse").attr("cx",100).attr("cy",800).attr("rx", 6).attr("ry", 6).style("fill", "#084B8A");
-    mapObject.mapLegend.append("ellipse").attr("cx",100).attr("cy",830).attr("rx", 6).attr("ry", 6).style("fill", "#B43104");
-    mapObject.mapLegend.append("text").attr("x", 120).attr("y", 800).text("Allies").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
-    mapObject.mapLegend.append("text").attr("x", 120).attr("y", 830).text("Axis").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
+    mapObject.mapLegend.append("ellipse").attr("cx",70).attr("cy",500).attr("rx", 6).attr("ry", 6).style("fill", "#084B8A");
+    mapObject.mapLegend.append("ellipse").attr("cx",70).attr("cy",530).attr("rx", 6).attr("ry", 6).style("fill", "#B43104");
+    mapObject.mapLegend.append("text").attr("x", 90).attr("y", 500).text("Allies").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
+    mapObject.mapLegend.append("text").attr("x", 90).attr("y", 530).text("Axis").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
 
     
 };
@@ -162,11 +162,11 @@ mapObject.colorMapDeaths = function(){
     });
     mapObject.mapLegend = mapObject.mapRef.append("svg").attr("class", "legend");
     for(var j=0;j<keys.length;j++){
-        let y = 710 + j*30;
+        let y = 410 + j*30;
         let g = colorScale(n[j]);
         mapObject.mapLegend
             .append("ellipse")
-            .attr("cx",100)
+            .attr("cx",70)
             .attr("cy",y)
             .attr("rx", 6)
             .attr("ry", 6)
@@ -174,7 +174,7 @@ mapObject.colorMapDeaths = function(){
 
         mapObject.mapLegend
             .append("text")
-            .attr("x", 120)
+            .attr("x", 90)
             .attr("y", y)
             .text(n[j])
             .style("font-size", "15px")
@@ -198,8 +198,8 @@ mapObject.drawMap = function(){
         .style("opacity",0);
 
     mapObject.mapProjection = d3.geoMercator()  
-        .scale(210)
-        .translate( [mapObject.mapWidth / 2, mapObject.mapHeight/1.6]);
+        .scale(150)
+        .translate( [mapObject.mapWidth / 2, mapObject.mapHeight/1.8]);
         
 
     mapObject.path = d3.geoPath().projection(mapObject.mapProjection);

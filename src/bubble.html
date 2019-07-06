@@ -9,16 +9,13 @@
 </head>
 <body>
   <div class="topnav" id="myTopnav">
-    <a href="#battles" class="pulsanti active" onclick="mapObject.colorMapAlly()">Battles</a>
-    <a href="#casualties" class="pulsanti inactive" onclick="mapObject.colorMapDeaths()">Casualties</a>
+    <a href="#battles" class="pulsanti active" onclick="contexSwitch(1)">Casualties</a>
+    <a href="#casualties" class="pulsanti inactive" onclick="contexSwitch(0)">Battles</a>
     <a href="home.html"  class="pulsanti inactive" style="float: right">Maps</a>
   </div>
-
   <div id="toolbar">
-    <a href="#" id="all" class="pulsanti active">All</a>
-    <a href="#" id="side" class="pulsanti" style="position: relative">Side</a>
-    <a href="#" id="dead" class="pulsanti" style="position: relative">Casualties</a>
-  </div>
+    <a href="#" id="all" class="pulsanti_ active">Mixed</a>
+    <a href="#" id="year" class="pulsanti_">Group by alliances</a></div>
   <div id="vis"></div>
 
   <textarea name="hide" id="hide" style="display:none;z-index: -100;"></textarea>

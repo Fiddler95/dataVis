@@ -13,18 +13,20 @@
 
 #map{
     margin: 0 auto;
-    height: 1000px;
-    width: 1800px;
+    height: 700px;
+    width: 1200px;
     padding-top: 5vh;
+    text-align: center;
 }
 g{
     margin: 0 auto;
-   
+    text-align: center;
 } 
 #mapSvg { 
     margin: 0 auto;
     width: 100%;
     height: 100%;
+    text-align: center;
     }
 
 .countries {
@@ -80,6 +82,16 @@ g{
 .pulsanti {
     float: left;
     display: block;
+    color: rgba(211,211,211,0.7);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: "Courier New", sans-serif;
+}
+
+.pulsanti_ {
+    width: fit-content;
     color: rgba(211,211,211,0.7);
     text-align: center;
     padding: 14px 16px;
@@ -145,6 +157,7 @@ body{
     overflow: hidden;
     color: #000;
     background-color: black;
+    text-align: center;
 }
 
 div.tooltip {
@@ -246,9 +259,12 @@ div.tooltip {
 
 #toolbar{
     position: absolute;
-    float: left;
-    padding: 50px;
-    width: 5vw;
+    top: 60px;
+    border-style: solid;
+    border-color: white;
+    height: fit-content;
+    width: 97%;
+    text-align: center;
 }
 
 .name{
