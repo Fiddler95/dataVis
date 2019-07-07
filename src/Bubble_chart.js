@@ -31,35 +31,16 @@ function bubbleChart() {
     2010: width - 160
   };
 
-  // @v4 strength to apply to the position forces
-  var forceStrength = 0.03;
-
-  // These will be set in create_nodes and create_vis
   var svg = null;
   var bubbles = null;
   var nodes = [];
 
-  // Charge function that is called for each node.
-  // As part of the ManyBody force.
-  // This is what creates the repulsion between nodes.
-  //
-  // Charge is proportional to the diameter of the
-  // circle (which is stored in the radius attribute
-  // of the circle's associated data.
-  //
-  // This is done to allow for accurate collision
-  // detection with nodes of different sizes.
-  //
-  // Charge is negative because we want nodes to repel.
-  // @v4 Before the charge was a stand-alone attribute
-  //  of the force layout. Now we can use it as a separate force!
+    // @v4 strength to apply to the position forces
+    var forceStrength = 0.03;
   function charge(d) {
     return -Math.pow(d.radius, 2.0) * forceStrength;
   }
 
-  // Here we create a force layout and
-  // @v4 We create a force simulation now and
-  //  add forces to it.
   var simulation = d3.forceSimulation()
     .velocityDecay(0.2)
     .force('x', d3.forceX().strength(forceStrength).x(center.x))
@@ -67,8 +48,6 @@ function bubbleChart() {
     .force('charge', d3.forceManyBody().strength(charge))
     .on('tick', ticked);
 
-  // @v4 Force starts up automatically,
-  //  which we don't want as there aren't any nodes yet.
   simulation.stop();
 
   // Nice looking colors - no reason to buck the trend

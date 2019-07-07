@@ -35,6 +35,7 @@ g{
     transition-duration: 2s;
     stroke-width: 0.5px;
     stroke:black;
+    cursor: pointer;
 }
 
 .ally{
@@ -44,6 +45,7 @@ g{
     stroke-width: 0.5px;
     stroke:black;
     opacity: 1;
+    cursor: pointer;
 }
 
 .baddies{
@@ -53,6 +55,7 @@ g{
     stroke-width: 0.5px;
     stroke:black;
     opacity: 1;
+    cursor: pointer;
 }
 
 .circleY{
