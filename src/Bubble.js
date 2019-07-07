@@ -273,7 +273,6 @@ function bubbleChartC() {
     }
 
     function nodePos(d) {
-        console.log(d.Alliance);
         return splitCenters[d.Alliance].x;
     }
 
@@ -337,7 +336,7 @@ function bubbleChartC() {
    * displayName is expected to be a string and either 'year' or 'all'.
    */
     chart.toggleDisplay = function (displayName) {
-        if (displayName === 'year') {
+        if (displayName === 'split') {
             splitBubbles();
         } else {
             groupBubbles();
@@ -550,7 +549,6 @@ function bubbleChartB() {
     }
 
     function nodePos(d) {
-        console.log(d.battle_name);
         return splitCenters[d.front].x;
     }
 
@@ -613,7 +611,7 @@ function bubbleChartB() {
    * displayName is expected to be a string and either 'year' or 'all'.
    */
     chart.toggleDisplay = function (displayName) {
-        if (displayName === 'year') {
+        if (displayName === 'split') {
             splitBubbles();
         } else {
             groupBubbles();
@@ -646,9 +644,16 @@ function setupButtons(myBubbleChart) {
 }
 
 function contexSwitch(choice) {
+    d3.selectAll('.pulsanti_').classed('active', false);
+    // Find the button just clicked
+    var button = d3.select("#all");
+
+    // Set it as the active button
+    button.classed('active', true);
+
     if(choice==1){
-        let t = d3.selectAll('svg')
-        t.remove()
+        let t = d3.selectAll('svg');
+        t.remove();
         // Load the data.
         d3.csv('data/Deaths&Alliances.csv', display);
 
@@ -669,8 +674,8 @@ function contexSwitch(choice) {
         setupButtons(myBubbleChart);
     }
     else {
-        let t = d3.selectAll('svg')
-        t.remove()
+        let t = d3.selectAll('svg');
+        t.remove();
         // Load the data.
         d3.csv('data/Battles.csv', display);
 
@@ -687,9 +692,8 @@ function contexSwitch(choice) {
 
             myBubbleChart('#vis', data);
         }
+        setupButtons(myBubbleChart);
     }
-
-    setupButtons(myBubbleChart);
 }
 
 contexSwitch(1);

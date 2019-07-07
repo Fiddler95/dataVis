@@ -157,7 +157,6 @@ body{
     overflow: hidden;
     color: #000;
     background-color: black;
-    text-align: center;
 }
 
 div.tooltip {
@@ -187,7 +186,6 @@ div.tooltip {
 .infoPanel{
     position: relative;
     margin:0 auto;
-    border-radius: 5%;
     background-color: white;
     width: 50vw;
     height: fit-content;
@@ -260,8 +258,6 @@ div.tooltip {
 #toolbar{
     position: absolute;
     top: 60px;
-    border-style: solid;
-    border-color: white;
     height: fit-content;
     width: 97%;
     text-align: center;
