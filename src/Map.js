@@ -29,9 +29,12 @@ mapObject.popUp= function(d) {
 
     x=mapObject.path.centroid(d)[0]+90;
     y=mapObject.path.centroid(d)[1];
+
     
     mapObject.mapInfobox  = d3.select("#mapSvg").append("g")
-      .attr("transform", "translate(" + x + "," + y + ")");
+    .transition()
+    .duration(2000)
+    .attr("transform", "translate(" + x + "," + y + ")");
 
      var rect= mapObject.mapInfobox.append("rect")
       .style("fill","white")
@@ -47,7 +50,13 @@ mapObject.popUp= function(d) {
       .attr("dy", "2em")
       .attr("x", 5);
 
-      var ibSvg=mapObject.mapInfobox.append("svg")
+      var ibSvg=mapObject.mapInfobox.append("svg") 
+      .style("width","0px")
+      .style("height","0px");
+
+      ibSvg         
+      .transition()
+      .duration(2000)
       .style("width","300px")
       .style("height","300px");
 
@@ -86,8 +95,8 @@ mapObject.zoomF=function(d) {
         console.log(mapObject.battlesRef)
         mapObject.battlesRef.transition()
                         .duration(2000)
-                        .attr('width', 10)
-                        .attr('height', 10);
+                        .attr('width', 20)
+                        .attr('height', 20);
     } 
     //else, reset the view to normal zoom
     else {
