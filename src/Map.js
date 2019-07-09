@@ -18,13 +18,7 @@ var mapObject = {
     active : null,
     zoomF:null,
     popUp:null,
-    testCoord : [
-        {
-            "x":132.455278,
-            "y":34.385278},
-        {
-            "x":129.876667,
-            "y":32.749444}]
+    battlesRef:null,
 };
 
 mapObject.popUp= function(d) {
@@ -89,14 +83,18 @@ mapObject.zoomF=function(d) {
         k = 2;
         mapObject.active = d;
         // add circles to svg
-
-        mapObject.mapRef.selectAll("circle")
-            .attr("class", "circleY")
+        console.log(mapObject.battlesRef)
+        mapObject.battlesRef.transition()
+                        .duration(2000)
+                        .attr('width', 10)
+                        .attr('height', 10);
     } 
     //else, reset the view to normal zoom
     else {
-        mapObject.mapRef.selectAll("circle")
-            .attr("class", "circleE");
+        mapObject.battlesRef.transition()
+                        .duration(2000)
+                        .attr('width', 0)
+                        .attr('height', 0)
         x = mapObject.mapWidth / 2;
         y = mapObject.mapHeight / 2;
         k = 1;
@@ -226,28 +224,52 @@ mapObject.drawMap = function(){
                 .style("opacity", 0);
         });
 
-    mapObject.mapRef.selectAll("circle")
-        .data(mapObject.mapBattles).enter()
-        .append("circle")
-        .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
-        .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
-        .attr("class", "circleE")
-        //.attr("fill", function (d) { if(d.battle_siege == 1){return "#5E610B"} else {return "#0B615E"}})
-        .attr("fill", function (d) { if(d.battle_siege == 1){return "#80A4ED"} else {return "#D4CB92"}})
-        .on("click", function(d) {mapObject.handleCircleClick(d)} )
-        .on("mouseover", function(d) {
-            mapObject.mapTooltip.transition()
-                .duration(200)
-                .style("opacity", .9);
-            mapObject.mapTooltip.html(d.battle_name)
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY) + "px");
-        })
-        .on("mouseout", function(d) {
-            mapObject.mapTooltip.transition()
-                .duration(500)
-                .style("opacity", 0);
-        });
+    mapObject.battlesRef= mapObject.mapRef.selectAll("image");
+    // mapObject.battlesRef.data(mapObject.mapBattles).enter()
+    //     .append("circle")
+    //     .attr("cx", function (d) { return mapObject.mapProjection([d.long,d.lat])[0]; })
+    //     .attr("cy", function (d) { return mapObject.mapProjection([d.long,d.lat])[1]; })
+    //     .attr("class", "circleE")
+    //     //.attr("fill", function (d) { if(d.battle_siege == 1){return "#5E610B"} else {return "#0B615E"}})
+    //     .attr("fill", function (d) { if(d.battle_siege == 1){return "#80A4ED"} else {return "#D4CB92"}})
+    //     .on("click", function(d) {mapObject.handleCircleClick(d)} )
+    //     .on("mouseover", function(d) {
+    //         mapObject.mapTooltip.transition()
+    //             .duration(200)
+    //             .style("opacity", .9);
+    //         mapObject.mapTooltip.html(d.battle_name)
+    //             .style("left", (d3.event.pageX) + "px")
+    //             .style("top", (d3.event.pageY) + "px");
+    //     })
+    //     .on("mouseout", function(d) {
+    //         mapObject.mapTooltip.transition()
+    //             .duration(500)
+    //             .style("opacity", 0);
+    //     });
+
+    mapObject.battlesRef.data(mapObject.mapBattles).enter()
+                        .append("svg:image")
+                        .attr('x', function (d) { return mapObject.mapProjection([d.long,d.lat])[0]-5; })
+                        .attr('y', function (d) { return mapObject.mapProjection([d.long,d.lat])[1]-5; })
+                        .attr('width', 0)
+                        .attr('height', 0)
+                        .attr("xlink:href", function (d) { if(d.battle_siege != 1){return "Icons/exp.png"} else {return "Icons/siege.png"}})
+                        .on("click", function(d) {mapObject.handleCircleClick(d)} )
+                        .on("mouseover", function(d) {
+                            mapObject.mapTooltip.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                            mapObject.mapTooltip.html(d.battle_name)
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY) + "px");
+                        })
+                        .on("mouseout", function(d) {
+                            mapObject.mapTooltip.transition()
+                                .duration(500)
+                                .style("opacity", 0);
+                        });
+    mapObject.battlesRef= mapObject.mapRef.selectAll("image");
+
 };
 
 mapObject.createMap = function(dataMap,dataBattle){
