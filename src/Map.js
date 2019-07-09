@@ -94,14 +94,14 @@ mapObject.zoomF=function(d) {
         // add circles to svg
         console.log(mapObject.battlesRef)
         mapObject.battlesRef.transition()
-                        .duration(2000)
-                        .attr('width', 20)
-                        .attr('height', 20);
+                        .duration(1000)
+                        .attr('width', 10)
+                        .attr('height', 10);
     } 
     //else, reset the view to normal zoom
     else {
         mapObject.battlesRef.transition()
-                        .duration(2000)
+                        .duration(1000)
                         .attr('width', 0)
                         .attr('height', 0)
         x = mapObject.mapWidth / 2;
