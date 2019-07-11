@@ -22,31 +22,41 @@ var mapObject = {
 };
 
 mapObject.popUp= function(d) {
-    var w=200;
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
     if(mapObject.active==null) return;
     var x,y;
 
-    x=900;
-    y=0;
+    x=820;
+    y=20;
 
 
     mapObject.mapInfobox  = d3.select("#mapSvg").append("g")
         .attr("transform", "translate(" + x + "," + y + ")");
 
     var rect= mapObject.mapInfobox.append("rect")
-        .style("fill","white")
-        .style("stroke","steelblue");
+        .style("fill","white");
 
     mapObject.mapInfobox.append("text")
         .text("Name: " + d.properties.name)
+        .attr("font-family", "Courier New")
         .attr("dy", "1em")
         .attr("x", 5);
 
     mapObject.mapInfobox.append("text")
         .text("Deaths: " + d.properties.deaths)
+        .attr("font-family", "Courier New")
         .attr("dy", "2em")
         .attr("x", 5);
+
+    mapObject.mapInfobox.append("text")
+        .text("Population: " + d.properties.pop)
+        .attr("font-family", "Courier New")
+        .attr("dy", "3em")
+        .attr("x", 5);
+
+    var bbox = mapObject.mapInfobox.node().getBBox();
+    var w = bbox.width;
+    var h = bbox.height+5;
 
     var ibSvg=mapObject.mapInfobox.append("svg")
         .style("width","0px")
@@ -60,7 +70,7 @@ mapObject.popUp= function(d) {
 
     var bubbleScale = d3.scaleSqrt()
         .domain([0, 500000000])
-        .range([ 4, 60]);
+        .range([ 2, 80]);
 
     var bolle = ibSvg.append("g").selectAll("circle");
 
@@ -68,22 +78,21 @@ mapObject.popUp= function(d) {
         .enter()
         .append("circle")
         .attr("cx", w/2 )
-        .attr("cy",function(d){return bubbleScale(parseInt(d))+40} )
-        .attr("r", function(d){return bubbleScale(parseInt(d))} )
+        .attr("cy", h+60 )
+        .attr("r", 60 )
         .attr("class","bubbleP");
 
     bolle.data([parseInt(d.properties.deaths)])
         .enter()
         .append("circle")
         .attr("cx", w/2 )
-        .attr("cy",function(d){return bubbleScale(parseInt(d))+40} )
+        .attr("cy",function(d){return h+120-bubbleScale(parseInt(d))} )
         .attr("r", function(d){return bubbleScale(parseInt(d))} )
         .attr("class","bubbleD");
 
-    var bbox = mapObject.mapInfobox.node().getBBox();
-    rect.attr("width", w)
-        .attr("height", bbox.height + 5)
-      
+    rect.attr("width", bbox.width + 10)
+        .attr("height", bbox.height + 130);
+
   };
 
 mapObject.zoomF=function(d) {
