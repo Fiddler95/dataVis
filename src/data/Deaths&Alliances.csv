@@ -1,54 +1,54 @@
-Nationality,GeoCode,Deaths,Alliance
-Cuba,CUB,100,Allies
-Mexico,MEX,100,Allies
-Switzerland,CHE,100,Neutral
-Iceland,ISL,200,Neutral
-Iran,IRN,200,Neutral
-Ireland,IRL,200,Neutral
-Turkey,TUR,200,Neutral
-Mongolia,MNG,300,Axis
-Iraq,IRQ,500,Axis
-Nauru,NRU,500,Allies
-Sweden,SWE,600,Neutral
-Brazil,BRA,2000,Allies
-Luxembourg,LUX,2000,Allies
-Denmark,DNK,3200,Allies
-Thailand,THA,7600,Axis
-Norway,NOR,9500,Allies
-New Zealand,NZL,11900,Allies
-South Africa,ZAF,11900,Allies
-Papua New Guinea,PNG,15000,Neutral
-Bulgaria,BGR,25000,Axis
-Albania,ALB,30000,Allies
-Australia,AUS,40500,Allies
-Canada,CAN,45400,Allies
-Estonia,EST,50000,Neutral
-Portugal,PRT,55000,Neutral
-Slovakia,SVK,65500,Axis
-Finland,FIN,97000,Axis
-Ethiopia,ETH,100000,Allies
-Austria,AUT,120000,Allies
-Singapore,SGP,150000,Allies
-Latvia,LVA,230000,Neutral
-Belgium,BEL,238000,Allies
-Myanmar,MMR,272000,Neutral
-United States,USA,288001,Allies
-Netherlands,NLD,301000,Allies
-Czechoslovakia,CZE,325000,Allies
-Greece,GRC,327550,Allies
-Lithuania,LTU,350000,Neutral
-Korea,KOR,430500,Allies
-Italy,ITA,444290,Axis
-United Kingdom,GBR,450901,Allies
-France,FRA,552600,Allies
-Romania,ROU,800000,Axis
-Hungary,HUN,804500,Axis
-Philippines,PHL,807000,Allies
-Yugoslavia,MKD,1027000,Allies
-India,IND,2087000,Allies
-Japan,JPN,2870149,Axis
-Indonesia,IDN,3500000,Allies
-Poland,POL,5720000,Allies
-Germany,DEU,7605632,Axis
-China,CHN,15000000,Allies
-Soviet Union,RUS,20045724,Allies
+Nationality,GeoCode,Deaths,Alliance,Population
+Cuba,CUB,100,Allies,4235000
+Mexico,MEX,100,Allies,19320000
+Switzerland,CHE,100,Neutral,4210000
+Iceland,ISL,200,Neutral,125000
+Iran,IRN,200,Neutral,14340000
+Ireland,IRL,200,Neutral,2960000
+Turkey,TUR,200,Neutral,17370000
+Mongolia,MNG,300,Axis,819000
+Iraq,IRQ,500,Axis,3698000
+Nauru,NRU,500,Allies,3400
+Sweden,SWE,600,Neutral,6341000
+Brazil,BRA,2000,Allies,40289000
+Luxembourg,LUX,2000,Allies,295000
+Denmark,DNK,3200,Allies,3839000
+Thailand,THA,7600,Axis,15023
+Norway,NOR,9500,Allies,2945000
+New Zealand,NZL,11900,Allies,1668000
+South Africa,ZAF,11900,Allies,10160000
+Papua New Guinea,PNG,15000,Neutral,129200
+Bulgaria,BGR,25000,Axis,6458000
+Albania,ALB,30000,Allies,1073000
+Australia,AUS,40500,Allies,6968000
+Canada,CAN,45400,Allies,10952000
+Estonia,EST,50000,Neutral,1134000
+Portugal,PRT,55000,Neutral,18595000
+Slovakia,SVK,65500,Axis,2635053
+Finland,FIN,97000,Axis,3700000
+Ethiopia,ETH,100000,Allies,17700000
+Austria,AUT,320000,Allies,6653000
+Singapore,SGP,150000,Allies,5118000
+Latvia,LVA,260000,Neutral,1890000
+Belgium,BEL,238000,Allies,8387000
+Myanmar,MMR,272000,Neutral,5118000
+United States,USA,288001,Allies,131028000
+Netherlands,NLD,301000,Allies,8729000
+Czechoslovakia,CZE,325000,Allies,14612000
+Greece,GRC,327550,Allies,7222000
+Lithuania,LTU,350000,Neutral,2575000
+Korea,KOR,430500,Allies,24326000
+Italy,ITA,444290,Axis,44394000
+United Kingdom,GBR,450901,Allies,47760000
+France,FRA,552600,Allies,41680000
+Romania,ROU,800000,Axis,15970000
+Hungary,HUN,804500,Axis,9129000
+Philippines,PHL,807000,Allies,16000303
+Yugoslavia,MKD,1027000,Allies,15490000
+India,IND,2087000,Allies,377800000
+Japan,JPN,2870149,Axis,71380000
+Indonesia,IDN,3500000,Allies,65000000
+Poland,POL,5720000,Allies,34849000
+Germany,DEU,7605632,Axis,69300000
+China,CHN,15000000,Allies,517568000
+Soviet Union,RUS,20045724,Allies,194090000

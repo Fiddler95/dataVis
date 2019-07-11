@@ -22,59 +22,63 @@ var mapObject = {
 };
 
 mapObject.popUp= function(d) {
-    var w=200; 
+    var w=200;
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
     if(mapObject.active==null) return;
     var x,y;
 
-    x=mapObject.path.centroid(d)[0]+90;
-    y=mapObject.path.centroid(d)[1];
+    x=900;
+    y=0;
 
-    
+
     mapObject.mapInfobox  = d3.select("#mapSvg").append("g")
+        .attr("transform", "translate(" + x + "," + y + ")");
+
+    var rect= mapObject.mapInfobox.append("rect")
+        .style("fill","white")
+        .style("stroke","steelblue");
+
+    mapObject.mapInfobox.append("text")
+        .text("Name: " + d.properties.name)
+        .attr("dy", "1em")
+        .attr("x", 5);
+
+    mapObject.mapInfobox.append("text")
+        .text("Deaths: " + d.properties.deaths)
+        .attr("dy", "2em")
+        .attr("x", 5);
+
+    var ibSvg=mapObject.mapInfobox.append("svg")
+        .style("width","0px")
+        .style("height","0px");
+
+    ibSvg
     .transition()
     .duration(2000)
-    .attr("transform", "translate(" + x + "," + y + ")");
+    .style("width","300px")
+    .style("height","300px");
 
-     var rect= mapObject.mapInfobox.append("rect")
-      .style("fill","white")
-      .style("stroke","steelblue");
+    var bubbleScale = d3.scaleSqrt()
+        .domain([0, 500000000])
+        .range([ 4, 60]);
 
-      mapObject.mapInfobox.append("text")
-      .text("Name: " + d.properties.name)
-      .attr("dy", "1em")
-      .attr("x", 5);
+    var bolle = ibSvg.append("g").selectAll("circle");
 
-      mapObject.mapInfobox.append("text")
-      .text("Deaths: " + d.properties.deaths)
-      .attr("dy", "2em")
-      .attr("x", 5);
+    bolle.data([parseInt(d.properties.pop)])
+        .enter()
+        .append("circle")
+        .attr("cx", w/2 )
+        .attr("cy",function(d){return bubbleScale(parseInt(d))+40} )
+        .attr("r", function(d){return bubbleScale(parseInt(d))} )
+        .attr("class","bubbleP");
 
-      var ibSvg=mapObject.mapInfobox.append("svg") 
-      .style("width","0px")
-      .style("height","0px");
-
-      ibSvg         
-      .transition()
-      .duration(2000)
-      .style("width","300px")
-      .style("height","300px");
-
-      var bubbleScale = d3.scaleSqrt()
-      .domain([0, 25000000])
-      .range([ 4, 60]);
-
-      ibSvg.append("g").selectAll("circle")
-      .data([parseInt(d.properties.deaths)])
-      .enter()
-      .append("circle")
-      .attr("cx", w/2 )
-      .attr("cy",function(d){return bubbleScale(parseInt(d))+40} )
-      .attr("r", function(d){return bubbleScale(parseInt(d))} )
-      .attr("class","bubbleCircle");
-        
-
-    
+    bolle.data([parseInt(d.properties.deaths)])
+        .enter()
+        .append("circle")
+        .attr("cx", w/2 )
+        .attr("cy",function(d){return bubbleScale(parseInt(d))+40} )
+        .attr("r", function(d){return bubbleScale(parseInt(d))} )
+        .attr("class","bubbleD");
 
     var bbox = mapObject.mapInfobox.node().getBBox();
     rect.attr("width", w)
@@ -92,7 +96,6 @@ mapObject.zoomF=function(d) {
         k = 2;
         mapObject.active = d;
         // add circles to svg
-        console.log(mapObject.battlesRef)
         mapObject.battlesRef.transition()
                         .duration(1000)
                         .attr('width', 10)
@@ -138,6 +141,7 @@ mapObject.colorMapAlly = function(){
     });
 
     }, 200);
+
     mapObject.mapLegend = mapObject.mapRef.append("svg").attr("class", "legend");
     mapObject.mapLegend.append("ellipse").attr("cx",70).attr("cy",500).attr("rx", 6).attr("ry", 6).style("fill", "#084B8A");
     mapObject.mapLegend.append("ellipse").attr("cx",70).attr("cy",530).attr("rx", 6).attr("ry", 6).style("fill", "#B43104");
@@ -293,17 +297,18 @@ mapObject.createMap = function(dataMap,dataBattle){
         for(var i=0;i<dataMap.length;i++){
             let tag=dataMap[i].GeoCode;
             let deaths=dataMap[i].Deaths;
-            let alliance=dataMap[i].Alliance;            
+            let alliance=dataMap[i].Alliance;
+            let pop=dataMap[i].Population;
             for(var j=0; j<world.objects.units.geometries.length;j++){
                 let id= world.objects.units.geometries[j].id;
                 if(id===tag){
                     world.objects.units.geometries[j].properties.deaths=deaths;
                     world.objects.units.geometries[j].properties.alliance=alliance;
+                    world.objects.units.geometries[j].properties.pop=pop;
                 }
             }
 
         }
-
 
         mapObject.mapBattles=dataBattle;
         mapObject.mapData=world;
