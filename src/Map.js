@@ -25,6 +25,7 @@ mapObject.popUp= function(d) {
     if (mapObject.mapInfobox) mapObject.mapInfobox.remove();
     if(mapObject.active==null) return;
     var x,y;
+    var ratio = (parseInt(d.properties.deaths)/parseInt(d.properties.pop))*100000
 
     x=820;
     y=20;
@@ -68,9 +69,9 @@ mapObject.popUp= function(d) {
     .style("width","300px")
     .style("height","300px");
 
-    var bubbleScale = d3.scaleSqrt()
-        .domain([0, 500000000])
-        .range([ 2, 80]);
+    var ratioScale = d3.scaleSqrt()
+        .domain([0, 100000])
+        .range([ 1, 30]);
 
     var bolle = ibSvg.append("g").selectAll("circle");
 
@@ -86,8 +87,8 @@ mapObject.popUp= function(d) {
         .enter()
         .append("circle")
         .attr("cx", w/2 )
-        .attr("cy",function(d){return h+120-bubbleScale(parseInt(d))} )
-        .attr("r", function(d){return bubbleScale(parseInt(d))} )
+        .attr("cy",function(d){return h+120-ratioScale(parseInt(ratio))} )
+        .attr("r", function(d){return ratioScale(parseInt(ratio))} )
         .attr("class","bubbleD");
 
     rect.attr("width", bbox.width + 10)
