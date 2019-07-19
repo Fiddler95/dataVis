@@ -200,7 +200,8 @@ function bubbleChartC() {
                 .text(categorie[j])
                 .style("font-size", "15px")
                 .style('fill', 'white')
-                .attr("alignment-baseline","middle");
+                .attr("alignment-baseline","middle")
+                .attr("font-family", "Courier New");
         }
 
         simulation.nodes(nodes);
@@ -390,7 +391,8 @@ function bubbleChartB() {
                 .text(categorie[j])
                 .style("font-size", "15px")
                 .style('fill', 'white')
-                .attr("alignment-baseline","middle");
+                .attr("alignment-baseline","middle")
+                .attr("font-family", "Courier New");
         }
 
         groupBubbles();

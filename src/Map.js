@@ -135,8 +135,12 @@ mapObject.zoomF=function(d) {
   };
 function onClick(d){
     mapObject.zoomF(d);
-    mapObject.popUp(d);
-    
+    if("deaths" in d.properties){
+        mapObject.popUp(d);
+    }
+    else{
+        mapObject.mapInfobox.remove();
+    }
 }
 mapObject.colorMapAlly = function(){
     if(mapObject.mapLegend!=null){mapObject.mapLegend.remove();}
@@ -155,8 +159,8 @@ mapObject.colorMapAlly = function(){
     mapObject.mapLegend = mapObject.mapRef.append("svg").attr("class", "legend");
     mapObject.mapLegend.append("ellipse").attr("cx",70).attr("cy",500).attr("rx", 6).attr("ry", 6).style("fill", "#084B8A");
     mapObject.mapLegend.append("ellipse").attr("cx",70).attr("cy",530).attr("rx", 6).attr("ry", 6).style("fill", "#B43104");
-    mapObject.mapLegend.append("text").attr("x", 90).attr("y", 500).text("Allies").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
-    mapObject.mapLegend.append("text").attr("x", 90).attr("y", 530).text("Axis").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle");
+    mapObject.mapLegend.append("text").attr("x", 90).attr("y", 500).text("Allies").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle").attr("font-family", "Courier New");
+    mapObject.mapLegend.append("text").attr("x", 90).attr("y", 530).text("Axis").style("font-size", "15px").style('fill', 'white').attr("alignment-baseline","middle").attr("font-family", "Courier New");
 
     
 };
@@ -199,6 +203,7 @@ mapObject.colorMapDeaths = function(){
             .attr("y", y)
             .text(n[j])
             .style("font-size", "15px")
+            .attr("font-family", "Courier New")
             .style('fill', 'white')
             .attr("alignment-baseline","middle");
     }
