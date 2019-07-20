@@ -357,3 +357,8 @@ mapObject.return2map = function () {
     document.getElementById('id02').style.display='none';
     document.body.style.overflowY = 'auto';
 };
+
+mapObject.closeInfo = function () {
+    document.getElementById('id01').style.display='none';
+    document.body.style.overflowY = 'auto';
+};

@@ -283,6 +283,7 @@ div.tooltip {
 /*-------------------------------------------------*/
 /* Slideshow container */
 .slideshow-container {
+    padding-top: 50px;
     max-width: 1000px;
     position: relative;
     margin: auto;
@@ -291,6 +292,8 @@ div.tooltip {
 /* Hide the images by default */
 .mySlides {
     display: none;
+    top: 50%;margin-left: 100px;
+    margin-top: -22px;
 }
 
 /* Next & previous buttons */
@@ -320,23 +323,14 @@ div.tooltip {
     background-color: rgba(0,0,0,0.8);
 }
 
-/* Caption text */
-.text {
+/* Number text (1/3 etc) */
+.numbertext {
     color: #f2f2f2;
     font-size: 15px;
     padding: 8px 12px;
     position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
+    font-weight: bold;
+    font-family: "Courier New", sans-serif;
     top: 0;
 }
 
@@ -356,20 +350,7 @@ div.tooltip {
     background-color: #717171;
 }
 
-/* Fading animation */
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+.helpImg{
+    height: 500px;
+    width: 800px;
 }

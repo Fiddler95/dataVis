@@ -17,7 +17,8 @@
     <script>
         function setCookie(cname,cvalue,minuti) {
             var d = new Date();
-            d.setTime(d.getTime() + (minuti*60*1000));
+            //d.setTime(d.getTime() + (minuti*60*1000));
+            d.setTime(d.getTime() + (5000));
             var expires = "expires=" + d.toGMTString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
@@ -42,6 +43,8 @@
             var user=getCookie("username");
             if (user == "") {
                 document.getElementById('id01').style.display='block';
+                document.getElementsByClassName("mySlides")[0].style.display = "block";
+                document.getElementsByClassName("dot")[0].className += " active1";
                 user = Math.random().toString(36).substring(7);
                 if (user != "" && user != null) {
                     setCookie("username", user, 30);
@@ -51,8 +54,7 @@
     </script>
 
     <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
+        showSlides(1);
 
         function plusSlides(n) {
             showSlides(slideIndex += n);
@@ -105,29 +107,36 @@
         </div>
     </div>
 
-    <div id="id01" class="modal">
+    <div id="id01" class="modal" style="background-color: rgba(0,0,0,0.9)">
         <div class="slideshow-container">
-            <span onclick="mapObject.return2map()" class="close" title="Chiudi">&times;</span>
-            <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="img_nature_wide.jpg" style="width:100%">
-                <div class="text">Caption Text</div>
+            <span onclick="mapObject.closeInfo()" class="close" style="color: #fff" title="Chiudi">&times;</span>
+            <div class="mySlides">
+                <div class="numbertext">1 / 5</div>
+                <img src="Icons/all.PNG" class="helpImg">
             </div>
 
-            <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="img_snow_wide.jpg" style="width:100%">
-                <div class="text">Caption Two</div>
+            <div class="mySlides">
+                <div class="numbertext">2 / 5</div>
+                <img src="Icons/cas.PNG" class="helpImg">
             </div>
 
-            <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                <img src="img_mountains_wide.jpg" style="width:100%">
-                <div class="text">Caption Three</div>
+            <div class="mySlides">
+                <div class="numbertext">3 / 5</div>
+                <img src="Icons/zoom.PNG" class="helpImg">
             </div>
 
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <div class="mySlides">
+                <div class="numbertext">4 / 5</div>
+                <img src="Icons/bub_m.PNG" class="helpImg">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">5 / 5</div>
+                <img src="Icons/bub_s.PNG" class="helpImg">
+            </div>
+
+            <a class="prev" style="float: left;" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" style="float: right;" onclick="plusSlides(1)">&#10095;</a>
 
         </div>
         <br>
@@ -136,6 +145,8 @@
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
         </div>
     </div>
 
