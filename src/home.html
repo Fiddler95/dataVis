@@ -17,8 +17,7 @@
     <script>
         function setCookie(cname,cvalue,minuti) {
             var d = new Date();
-            //d.setTime(d.getTime() + (minuti*60*1000));
-            d.setTime(d.getTime() + (5000));
+            d.setTime(d.getTime() + (minuti*60*1000));
             var expires = "expires=" + d.toGMTString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
