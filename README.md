@@ -1,7 +1,7 @@
 # dataVis
-
-1)copiare percorso fino dentro a cartella src
-2)cd percorso
-3)python -m http.server 8888
-4)andare su localhost:8888
-5)home.php
+Istruzioni per lancio della Webpage:
+- aprire il prompt dei comandi
+- spostarsi nel percorso dove si trova la cartella "*src*"
+- lanciare il comando *python -m http.server 8888*
+- andare su *localhost:8888*
+- entrare su *home.html*
